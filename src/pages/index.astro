@@ -5,6 +5,8 @@ import Services from '../components/home/partials/Services.astro';
 import AboutUs from '../components/home/partials/AboutUs.astro';
 import Partners from '../components/home/partials/Partners.astro';
 import Numbers from '../components/home/partials/Numbers.astro';
+import Contact from '../components/home/partials/Contact.astro';
+import { SITE_KEY } from 'astro:env/client';
 ---
 
 <BaseLayout>
@@ -13,4 +15,8 @@ import Numbers from '../components/home/partials/Numbers.astro';
   <AboutUs />
   <Partners />
   <Numbers />
+  <Contact />
 </BaseLayout>
+
+<!-- reCAPTCHA v3 -->
+<script is:inline async src={'https://www.google.com/recaptcha/api.js?render=' + (SITE_KEY ?? '')} data-astro-rerun></script>
