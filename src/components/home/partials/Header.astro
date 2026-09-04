@@ -1,0 +1,102 @@
+---
+const menuItems = [
+  { label: 'SERVICIOS\nSOLUCIONES', href: '#servicios' },
+  { label: 'NOSOTROS', href: '#nosotros' },
+  { label: 'NUESTRO\nRECORRIDO', href: '#recorrido' },
+  { label: 'ALIADOS\nESTRATÉGICOS', href: '#aliados' },
+  { label: 'QUIÉNES CONFÍAN\nEN NOSOTROS', href: '#clientes' },
+  { label: 'NÚMEROS', href: '#numeros' },
+  { label: 'FORMULARIO\nDE CONTACTO', href: '#contacto' },
+];
+---
+
+<header class="absolute inset-x-0 top-0 z-40">
+  <div class="relative mx-auto w-full max-w-310 px-6 pt-8 sm:px-10 sm:pt-12 lg:px-12 lg:pt-20 xl:px-16 xl:pt-28 2xl:px-0">
+    <div class="flex items-start justify-between">
+      <a href="/" aria-label="Pronave, inicio" class="block w-44 sm:w-52 xl:w-56">
+        <img src="/images/logos/logo-full-white.svg" alt="Pronave Logistics support" loading="lazy" class="h-auto w-full" />
+      </a>
+
+      <button
+        type="button"
+        data-menu-toggle
+        data-open="false"
+        aria-controls="site-menu"
+        aria-expanded="false"
+        aria-label="Abrir menú"
+        class="group relative mt-1 flex h-12 w-12 items-center justify-center p-1 transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:h-14 sm:w-14"
+      >
+        <span data-menu-label class="sr-only">Abrir menú</span>
+        <img src="/images/icons/hamburguer-icon.svg" alt="" loading="lazy" class="h-auto w-full opacity-100 transition-opacity duration-200 group-data-[open=true]:opacity-0" />
+        <span aria-hidden="true" class="absolute inset-0 flex items-center justify-center pb-1 font-display text-5xl font-light leading-none text-white opacity-0 transition-opacity duration-200 group-data-[open=true]:opacity-100">×</span>
+      </button>
+    </div>
+
+    <div
+      id="site-menu"
+      class="absolute right-6 top-full mt-5 max-h-svh w-72 max-w-full overflow-y-auto bg-white text-black opacity-0 shadow-2xl invisible pointer-events-none translate-y-2 transition duration-200 ease-out data-[open=true]:visible data-[open=true]:translate-y-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto sm:right-10 sm:w-80 lg:right-12 xl:right-16 2xl:right-0"
+      aria-hidden="true"
+    >
+      <div class="px-7 pb-7 pt-5 sm:px-8 sm:pb-8 sm:pt-6">
+        <div class="flex justify-end">
+          <button
+            type="button"
+            data-menu-close
+            aria-label="Cerrar menú"
+            class="font-display text-4xl font-medium leading-none transition-opacity hover:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+
+        <nav aria-label="Navegación principal" class="mt-5 w-full">
+          <ul>
+            {menuItems.map((item) => (
+              <li class="border-b border-black last:border-b-0">
+                <a href={item.href} data-menu-link class="block whitespace-pre-line py-4 font-display text-xl font-medium leading-none tracking-tighter transition-opacity hover:opacity-55 sm:py-5 sm:text-2xl">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menu = document.querySelector<HTMLElement>('#site-menu');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const close = document.querySelector<HTMLButtonElement>('[data-menu-close]');
+  const links = document.querySelectorAll<HTMLAnchorElement>('[data-menu-link]');
+  const menuLabel = document.querySelector<HTMLElement>('[data-menu-label]');
+
+  const setMenuState = (isOpen: boolean) => {
+    if (!menu || !toggle) return;
+
+    menu.dataset.open = String(isOpen);
+    toggle.dataset.open = String(isOpen);
+    menu.setAttribute('aria-hidden', String(!isOpen));
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+    if (menuLabel) menuLabel.textContent = isOpen ? 'Cerrar menú' : 'Abrir menú';
+  };
+
+  toggle?.addEventListener('click', () => setMenuState(menu?.dataset.open !== 'true'));
+  close?.addEventListener('click', () => setMenuState(false));
+  links.forEach((link) => link.addEventListener('click', () => setMenuState(false)));
+
+  document.addEventListener('click', (event) => {
+    if (!menu || !toggle || menu.dataset.open !== 'true') return;
+
+    const target = event.target;
+    if (target instanceof Node && !menu.contains(target) && !toggle.contains(target)) {
+      setMenuState(false);
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setMenuState(false);
+  });
+</script>

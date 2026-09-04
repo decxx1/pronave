@@ -1,0 +1,67 @@
+@import '@fontsource-variable/montserrat/wght.css';
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Myriad Variable Concept';
+  src: url('../fonts/MyriadVariableConcept-Roman.otf') format('opentype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Variable Concept';
+  src: url('../fonts/MyriadVariableConcept-Italic.otf') format('opentype');
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('../fonts/MyriadPro-Regular.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@theme {
+  --spacing-numbers: 70svh;
+  --spacing-numbers-mobile: 30rem;
+  --breakpoint-xs: 30rem;
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem;
+  --font-display: 'Montserrat Variable', sans-serif;
+  --font-body: 'Myriad Variable Concept', 'Myriad Pro', 'Montserrat Variable', sans-serif;
+  --color-brand-blue: #0265a0;
+  --color-partners-start: #014066;
+  --color-partners-end: #02619a;
+  --color-partners-title: #02649f;
+  --color-hero: #041827;
+  --color-hero-deep: #031421;
+  --color-ink: #17202a;
+  --color-sand: #f4f1eb;
+  --color-accent: #e5673f;
+}
+
+:root {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-sand);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+}
+
+::selection {
+  color: var(--color-sand);
+  background: var(--color-accent);
+}

@@ -1,0 +1,124 @@
+---
+const services = [
+  { name: 'Flexitanks', icon: 'container-flex-tank-icon.svg' },
+  { name: 'ISO Tank\nContainers', icon: 'container-tank-icon.svg' },
+  { name: 'Contenedores\nDry', icon: 'container-dry-icon.svg' },
+  { name: 'Contenedores\nReefer', icon: 'container-icon.svg' },
+  { name: 'Servicios\nIn Situ', icon: 'medal-icon.svg' },
+  { name: 'Terminal de\nconectores marítimos', icon: 'ship-icon.svg' },
+  { name: 'Transporte\nTerrestre', icon: 'transport-icon.svg' },
+];
+---
+
+<section id="servicios" class="bg-white py-14 text-black sm:py-20 lg:py-24">
+  <div class="mx-auto w-full max-w-310 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-0">
+    <div class="relative flex items-center justify-center">
+      <span aria-hidden="true" class="absolute inset-x-0 border-t-2 border-black"></span>
+      <h2 class="relative bg-brand-blue px-8 py-4 font-body text-3xl font-normal tracking-tight text-white sm:px-14 sm:py-5 sm:text-4xl lg:text-5xl">
+        SERVICIOS <span class="mx-2 sm:mx-4">|</span> SOLUCIONES
+      </h2>
+    </div>
+
+    <div class="relative mt-12 sm:mt-16">
+      <button
+        type="button"
+        data-services-prev
+        aria-label="Servicios anteriores"
+        class="absolute left-0 top-1/2 z-10 -translate-x-full -translate-y-1/2 px-1 py-3 text-2xl leading-none transition-opacity hover:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:pointer-events-none disabled:opacity-25 sm:text-3xl"
+      >
+        <span aria-hidden="true">◀</span>
+      </button>
+
+      <div class="overflow-hidden">
+        <div data-services-track class="-mx-2 flex w-auto transition-transform duration-500 ease-out">
+          {services.map((service) => (
+            <div class="w-full shrink-0 px-2 xs:w-1/2 md:w-1/3 lg:w-1/4">
+              <article class="flex h-52 flex-col items-center justify-center border-2 border-black px-3 text-center sm:h-56">
+                <img
+                  src={`/images/home/icons/${service.icon}`}
+                  alt=""
+                  loading="lazy"
+                  aria-hidden="true"
+                  class="h-16 w-20 object-contain sm:h-20 sm:w-24"
+                />
+                <h3 class="mt-5 whitespace-pre-line font-body text-xl font-normal leading-none tracking-tight sm:text-2xl">
+                  {service.name}
+                </h3>
+              </article>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        data-services-next
+        aria-label="Siguientes servicios"
+        class="absolute right-0 top-1/2 z-10 translate-x-full -translate-y-1/2 px-1 py-3 text-2xl leading-none transition-opacity hover:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:pointer-events-none disabled:opacity-25 sm:text-3xl"
+      >
+        <span aria-hidden="true">▶</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector<HTMLElement>('[data-services-track]');
+  const previous = document.querySelector<HTMLButtonElement>('[data-services-prev]');
+  const next = document.querySelector<HTMLButtonElement>('[data-services-next]');
+  const slides = track ? Array.from(track.children) : [];
+  let currentIndex = 0;
+  let visibleSlides = 1;
+  let autoplayId: number | undefined;
+
+  const getVisibleSlides = () => {
+    if (window.matchMedia('(min-width: 64rem)').matches) return 4;
+    if (window.matchMedia('(min-width: 48rem)').matches) return 3;
+    if (window.matchMedia('(min-width: 30rem)').matches) return 2;
+    return 1;
+  };
+
+  const updateCarousel = () => {
+    if (!track) return;
+
+    visibleSlides = getVisibleSlides();
+    currentIndex = Math.min(currentIndex, Math.max(0, slides.length - visibleSlides));
+    track.style.transform = `translateX(-${currentIndex * (100 / visibleSlides)}%)`;
+
+    if (previous) previous.disabled = currentIndex === 0;
+    if (next) next.disabled = currentIndex >= slides.length - visibleSlides;
+  };
+
+  const advanceCarousel = () => {
+    const lastIndex = Math.max(0, slides.length - visibleSlides);
+    currentIndex = currentIndex >= lastIndex ? 0 : currentIndex + 1;
+    updateCarousel();
+  };
+
+  const restartAutoplay = () => {
+    if (autoplayId !== undefined) window.clearInterval(autoplayId);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      autoplayId = window.setInterval(advanceCarousel, 4000);
+    }
+  };
+
+  previous?.addEventListener('click', () => {
+    currentIndex = Math.max(0, currentIndex - 1);
+    updateCarousel();
+    restartAutoplay();
+  });
+
+  next?.addEventListener('click', () => {
+    const lastIndex = Math.max(0, slides.length - visibleSlides);
+    currentIndex = currentIndex >= lastIndex ? 0 : currentIndex + 1;
+    updateCarousel();
+    restartAutoplay();
+  });
+
+  window.addEventListener('resize', () => {
+    updateCarousel();
+    restartAutoplay();
+  });
+  updateCarousel();
+  restartAutoplay();
+</script>

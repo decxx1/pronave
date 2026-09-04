@@ -1,0 +1,122 @@
+---
+const partners = [
+  { name: 'AMC', file: 'amc-logo-white.svg' },
+  { name: 'Grupo Peñaflor', file: 'grupo-peñaflor-logo-white.svg' },
+  { name: 'Hoyer', file: 'hoyer-logo-white.svg' },
+  { name: 'Evergreen', file: 'logo-evergreen-white.svg' },
+  { name: 'Maersk Line', file: 'logo-maersk-white.svg' },
+  { name: 'ONE Ocean Network Express', file: 'logo-one-white.svg' },
+  { name: 'Medlog', file: 'medlog-logo-white.svg' },
+  { name: 'Perfopro', file: 'perfopro-logo-white.svg' },
+  { name: 'Robinson', file: 'robinson-logo-white.svg' },
+  { name: 'Solt Nielsen', file: 'solt-nielsen-logo-white.svg' },
+  { name: 'STM', file: 'stm-logo-white.svg' },
+  { name: 'Total Trade Group', file: 'total-trade-group.svg' },
+];
+---
+
+<section id="partners" class="mt-8 bg-linear-to-r from-partners-start to-partners-end py-12 text-white sm:py-16 lg:py-20">
+  <div class="mx-auto w-full max-w-310 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-0">
+    <h2 class="mx-auto w-fit max-w-full bg-linear-to-r from-partners-title to-transparent px-6 py-4 text-center font-body text-2xl font-normal leading-none tracking-tight sm:px-8 sm:py-5 sm:text-3xl lg:text-4xl">
+      QUIENES CONFÍAN EN NOSOTROS
+    </h2>
+
+    <div class="relative mt-10 sm:mt-14">
+      <button
+        type="button"
+        data-partners-prev
+        aria-label="Partners anteriores"
+        class="absolute left-0 top-1/2 z-10 -translate-x-full -translate-y-1/2 px-1 py-3 text-2xl leading-none text-white opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:pointer-events-none disabled:opacity-25 sm:text-3xl"
+      >
+        <span aria-hidden="true">◀</span>
+      </button>
+
+      <div class="overflow-hidden">
+        <div data-partners-track class="-mx-2 flex w-auto transition-transform duration-500 ease-out">
+          {partners.map((partner) => (
+            <div class="w-full shrink-0 px-2 xs:w-1/2 md:w-1/3">
+              <div class="flex h-32 items-center justify-center sm:h-36">
+                <img
+                  src={`/images/partners/${partner.file}`}
+                  alt={partner.name}
+                  loading="lazy"
+                  class="h-20 w-56 object-contain"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        data-partners-next
+        aria-label="Siguientes partners"
+        class="absolute right-0 top-1/2 z-10 translate-x-full -translate-y-1/2 px-1 py-3 text-2xl leading-none text-white opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:pointer-events-none disabled:opacity-25 sm:text-3xl"
+      >
+        <span aria-hidden="true">▶</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector<HTMLElement>('[data-partners-track]');
+  const previous = document.querySelector<HTMLButtonElement>('[data-partners-prev]');
+  const next = document.querySelector<HTMLButtonElement>('[data-partners-next]');
+  const slides = track ? Array.from(track.children) : [];
+  let currentIndex = 0;
+  let visibleSlides = 1;
+  let autoplayId: number | undefined;
+
+  const getVisibleSlides = () => {
+    if (window.matchMedia('(min-width: 48rem)').matches) return 3;
+    if (window.matchMedia('(min-width: 30rem)').matches) return 2;
+    return 1;
+  };
+
+  const updateCarousel = () => {
+    if (!track) return;
+
+    visibleSlides = getVisibleSlides();
+    currentIndex = Math.min(currentIndex, Math.max(0, slides.length - visibleSlides));
+    track.style.transform = `translateX(-${currentIndex * (100 / visibleSlides)}%)`;
+
+    if (previous) previous.disabled = currentIndex === 0;
+    if (next) next.disabled = currentIndex >= slides.length - visibleSlides;
+  };
+
+  const advanceCarousel = () => {
+    const lastIndex = Math.max(0, slides.length - visibleSlides);
+    currentIndex = currentIndex >= lastIndex ? 0 : currentIndex + 1;
+    updateCarousel();
+  };
+
+  const restartAutoplay = () => {
+    if (autoplayId !== undefined) window.clearInterval(autoplayId);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      autoplayId = window.setInterval(advanceCarousel, 4000);
+    }
+  };
+
+  previous?.addEventListener('click', () => {
+    currentIndex = Math.max(0, currentIndex - 1);
+    updateCarousel();
+    restartAutoplay();
+  });
+
+  next?.addEventListener('click', () => {
+    const lastIndex = Math.max(0, slides.length - visibleSlides);
+    currentIndex = currentIndex >= lastIndex ? 0 : currentIndex + 1;
+    updateCarousel();
+    restartAutoplay();
+  });
+
+  window.addEventListener('resize', () => {
+    updateCarousel();
+    restartAutoplay();
+  });
+
+  updateCarousel();
+  restartAutoplay();
+</script>

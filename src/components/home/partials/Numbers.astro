@@ -1,0 +1,29 @@
+---
+const metrics = [
+  { value: '24', label: 'Tiempo sin incidentes\nen cargas o entregas' },
+  { value: '159', label: 'Proyectos que llegaron\nen tiempo y en forma' },
+  { value: '30', label: 'Empresas confían en\nnuestros servicios' },
+  { value: '4', label: 'Certificaciones' },
+];
+---
+
+<section id="numeros" aria-label="Nuestros números" class="relative h-numbers-mobile overflow-hidden bg-hero text-white lg:h-numbers">
+  <img
+    src="/images/home/containera.jpg"
+    alt="Operación de carga de contenedores en una terminal logística"
+    loading="lazy"
+    class="absolute inset-0 size-full object-cover object-bottom"
+  />
+
+  <div class="absolute inset-x-0 bottom-0 bg-black/60">
+    <div class="mx-auto grid w-full max-w-310 grid-cols-2 md:grid-cols-4">
+      {metrics.map((metric, index) => (
+        <div class="relative flex min-h-32 flex-col items-center justify-center px-4 py-5 text-center sm:min-h-36 sm:py-6">
+          {index > 0 && <span aria-hidden="true" class="absolute bottom-6 left-0 hidden h-10 border-l-4 border-white/75 md:block"></span>}
+          <strong class="font-display text-5xl font-semibold leading-none tracking-tighter sm:text-6xl lg:text-7xl">{metric.value}</strong>
+          <span class="mt-4 whitespace-pre-line font-body text-sm xs:text-base font-normal leading-tight sm:text-lg lg:text-xl">{metric.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
