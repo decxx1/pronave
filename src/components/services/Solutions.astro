@@ -1,0 +1,207 @@
+---
+type Solution = {
+  id: string;
+  title: string;
+  icon: string;
+  image: string;
+  imageAlt: string;
+  imageSide: 'left' | 'right';
+  highlight?: string;
+  items?: string[];
+  paragraphs?: string[];
+};
+
+const solutions: Solution[] = [
+  {
+    id: 'terminal',
+    title: 'Terminal de contenedores marítimos',
+    icon: 'ship-icon.svg',
+    image: '/images/servicios/1.jpeg',
+    imageAlt: 'Fila de contenedores apilados en terminal, con unidades ONE en primer plano',
+    imageSide: 'right',
+    highlight: 'Brindamos infraestructura y equipamiento especializado para la manipulación segura y eficiente de contenedores durante las operaciones de carga, descarga y almacenamiento.',
+    paragraphs: [
+      'Contamos con grúas Top Lifter y Reach Stacker, además de áreas especialmente preparadas para la limpieza de contenedores mediante hidrolavadoras de agua caliente a alta presión y detergentes aprobados y ambientalmente responsables, garantizando una limpieza eficiente del interior de cada unidad.',
+      'Nuestras instalaciones disponen de vigilancia 24 horas, control de accesos y sistema de videovigilancia (CCTV), asegurando la protección permanente de los equipos y las cargas.',
+    ],
+  },
+  {
+    id: 'dry',
+    title: 'Contenedores Dry',
+    icon: 'container-dry-icon.svg',
+    image: '/images/servicios/2.jpeg',
+    imageAlt: 'Contenedor dry ONE con las puertas abiertas en predio logístico',
+    imageSide: 'left',
+    items: [
+      'Servicios orientados a garantizar la disponibilidad y el correcto estado operativo de contenedores dry.',
+      'Manipuleo y almacenamiento.',
+      'Reparación y mantenimiento.',
+      'Lavado y limpieza.',
+      'Mejoramiento de grado.',
+      'Consolidación y desconsolidación de carga.',
+    ],
+  },
+  {
+    id: 'reefer',
+    title: 'Contenedores Reefer',
+    icon: 'container-icon.svg',
+    image: '/images/servicios/3.jpeg',
+    imageAlt: 'Técnico realizando mantenimiento en un contenedor reefer Star Cool',
+    imageSide: 'right',
+    highlight: 'Soporte técnico especializado para mantener la cadena de frío y asegurar el correcto funcionamiento de contenedores refrigerados.',
+    items: [
+      'Manipuleo y almacenamiento.',
+      'Reparación y mantenimiento.',
+      'Lavado y limpieza.',
+      'Mejoramiento de grado.',
+      'PTI (Pre-Trip Inspection).',
+      'Leak Test.',
+      'Gasificación para atmósfera controlada (AC).',
+      'Centro de servicio autorizado para equipos Star Cool, Carrier y Daikin.',
+    ],
+  },
+  {
+    id: 'iso-tank',
+    title: 'ISO Tank Containers',
+    icon: 'container-tank-icon.svg',
+    image: '/images/servicios/4.jpeg',
+    imageAlt: 'Reach stacker izando un ISO tank container Stolt en patio logístico',
+    imageSide: 'left',
+    highlight: 'Servicios técnicos para la atención integral de tank containers, cumpliendo con los estándares requeridos para cada operación.',
+    items: [
+      'Manipuleo y almacenamiento.',
+      'Lavado grado alimenticio.',
+      'Reparación y mantenimiento.',
+      'Leak Test.',
+    ],
+  },
+  {
+    id: 'flexitanks',
+    title: 'Flexitanks',
+    icon: 'container-flex-tank-icon.svg',
+    image: '/images/servicios/5.JPG',
+    imageAlt: 'Flexitank instalado en el interior de un contenedor con bulkhead y manguera de carga',
+    imageSide: 'right',
+    highlight: 'Soluciones para operaciones de carga líquida a granel, con supervisión técnica y acompañamiento durante todo el proceso:',
+    items: [
+      'Almacenamiento y montaje de flexitanks.',
+      'Supervisión y atención de carga.',
+      'Provisión de caudalímetros y válvulas.',
+    ],
+  },
+  {
+    id: 'in-situ',
+    title: 'Servicios In Situ',
+    icon: 'medal-icon.svg',
+    image: '/images/servicios/6.jpeg',
+    imageAlt: 'Control de temperatura en fruta paletizada con termómetro digital Hanna Checktemp',
+    imageSide: 'left',
+    highlight: 'Asistencia técnica especializada directamente en el lugar donde la operación lo requiere, brindando respuesta rápida y continuidad operativa.',
+    items: [
+      'Cold Treatment (calibración de sensores para tratamientos de frío).',
+      'Supervisión de carga de flexitanks.',
+      'Supervisión de carga de ISO Tank Containers.',
+      'Instalación de cortinas para atmósfera controlada (AC).',
+      'Reparación de contenedores reefer con servicio de emergencia 24/7.',
+      'Flota propia para el traslado de personal técnico.',
+    ],
+  },
+  {
+    id: 'transporte',
+    title: 'Transporte Terrestre',
+    icon: 'transport-icon.svg',
+    image: '/images/servicios/7.jpeg',
+    imageAlt: 'Camión refrigerado circulando por un paisaje de montaña nevada',
+    imageSide: 'right',
+    highlight: 'Servicio de transporte adaptado a los requerimientos específicos de cada operación logística.',
+    items: [
+      'Transporte nacional.',
+      'Transporte internacional.',
+      'Transporte con frío activo.',
+      'Transporte de mercancías IMO.',
+      'Transporte de cargas sobredimensionadas.',
+    ],
+  },
+];
+---
+
+<section id="soluciones" class="bg-white py-14 text-ink sm:py-20 lg:py-24">
+  <div class="mx-auto w-full max-w-310 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-0">
+    <div class="relative flex items-center justify-center">
+      <span aria-hidden="true" class="absolute inset-x-0 border-t-2 border-black"></span>
+      <h2 class="relative bg-brand-blue px-8 py-4 font-body text-2xl font-normal tracking-tight text-white sm:px-14 sm:py-5 sm:text-4xl lg:text-5xl">
+        SERVICIOS <span class="mx-2 sm:mx-4">|</span> SOLUCIONES
+      </h2>
+    </div>
+  </div>
+
+  <div class="mt-14 flex flex-col gap-16 sm:mt-20 sm:gap-20 lg:mt-24 lg:gap-28">
+    {solutions.map((solution) => (
+      <article
+        id={solution.id}
+        class="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2 lg:gap-0 xl:mx-auto xl:w-full xl:max-w-310 xl:gap-16 xl:px-16 2xl:px-0"
+      >
+        <div class:list={[
+          'flex flex-col justify-center px-6 sm:px-10',
+          solution.imageSide === 'left'
+            ? 'lg:order-2 lg:pl-8 lg:pr-12'
+            : 'lg:order-1 lg:pl-12 lg:pr-8',
+          'xl:px-0',
+        ]}>
+            <div class="flex items-center gap-4 sm:gap-5">
+              <img
+                src={`/images/home/icons/${solution.icon}`}
+                alt=""
+                loading="lazy"
+                aria-hidden="true"
+                class="h-12 w-14 shrink-0 object-contain sm:h-16 sm:w-20"
+              />
+              <h3 class="font-body text-3xl font-light italic leading-none tracking-tight sm:text-4xl lg:text-5xl">
+                {solution.title}
+              </h3>
+            </div>
+
+            {solution.highlight && (
+              <p class="mt-8 bg-brand-blue px-4 py-3 font-body text-base font-normal leading-snug tracking-tight text-white sm:mt-10 sm:px-5 sm:py-4 sm:text-lg">
+                {solution.highlight}
+              </p>
+            )}
+
+            {solution.paragraphs && (
+              <div class="mt-6 space-y-4 font-body text-base leading-relaxed tracking-tight sm:mt-8 sm:text-lg">
+                {solution.paragraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+            )}
+
+            {solution.items && (
+              <ul class:list={[
+                'space-y-2 font-body text-base leading-snug tracking-tight sm:text-lg',
+                solution.highlight ? 'mt-6 sm:mt-8' : 'mt-8 sm:mt-10',
+              ]}>
+                {solution.items.map((item) => (
+                  <li class="flex gap-2">
+                    <span aria-hidden="true" class="shrink-0">-</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <div class:list={[
+            'min-h-64 overflow-hidden sm:min-h-80 lg:min-h-80 xl:min-h-full',
+            solution.imageSide === 'left' ? 'lg:order-1' : 'lg:order-2',
+          ]}>
+            <img
+              src={solution.image}
+              alt={solution.imageAlt}
+              loading="lazy"
+              class="h-full w-full object-cover object-center"
+            />
+          </div>
+        </article>
+      ))}
+    </div>
+</section>

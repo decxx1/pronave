@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroPage from '../components/HeroPage.astro';
+import ValueProposition from '../components/nosotros/ValueProposition.astro';
+import Mission from '../components/nosotros/Mission.astro';
+import Vision from '../components/nosotros/Vision.astro';
+import Values from '../components/nosotros/Values.astro';
+---
+
+<BaseLayout
+  title="Nosotros | Pronave"
+  description="Conocé al equipo de Pronave y nuestra trayectoria en logística internacional."
+>
+  <HeroPage
+    image="/images/home/nosotros.jpg"
+    imageAlt="Equipo de Pronave en su oficina"
+  />
+  <ValueProposition />
+  <Mission />
+  <Vision />
+  <Values />
+</BaseLayout>

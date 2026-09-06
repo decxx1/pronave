@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroPage from '../components/HeroPage.astro';
+import Solutions from '../components/services/Solutions.astro';
+---
+
+<BaseLayout
+  title="Services | Pronave"
+  description="Soluciones de logística internacional y servicios especializados de Pronave."
+>
+  <HeroPage
+    image="/images/servicios/hero.jpeg"
+    imageAlt="Grúa portuaria trasladando un contenedor en una terminal logística"
+  />
+  <Solutions />
+</BaseLayout>

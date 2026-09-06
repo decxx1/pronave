@@ -1,19 +1,23 @@
-<section class="hero relative isolate flex min-h-svh items-start overflow-hidden bg-hero text-white">
+---
+interface Props {
+  image: string;
+  imageAlt?: string;
+}
+
+const {
+  image,
+  imageAlt = 'Operación logística de Pronave',
+} = Astro.props;
+---
+
+<section class="relative isolate flex min-h-svh items-start overflow-hidden bg-hero text-white">
   <img
-    src="/images/home/home_hero.jpeg"
-    alt="Vista aérea de una terminal portuaria con contenedores"
+    src={image}
+    alt={imageAlt}
     loading="lazy"
     class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
   />
   <div class="absolute inset-0 -z-10 bg-linear-to-b from-black/75 via-black/25 to-transparent"></div>
-
-  <img
-    src="/images/shapes/symbol-shape.svg"
-    alt=""
-    aria-hidden="true"
-    loading="lazy"
-    class="pointer-events-none absolute max-xs:left-10 bottom-0 z-0 w-96 max-w-252 xs:-right-64 xs:bottom-10 xs:w-full sm:-right-48 sm:bottom-4 sm:w-lg md:-right-44 md:bottom-56 md:w-2xl xl:-right-8 xl:bottom-32 xl:w-3xl"
-  />
 
   <div class="relative z-10 mx-auto w-full max-w-310 px-6 pb-12 pt-40 sm:px-10 sm:pb-16 sm:pt-48 lg:px-12 lg:pb-20 lg:pt-52 xl:px-16 2xl:px-0">
     <div class="max-w-208">
@@ -22,12 +26,8 @@
         Driven by expertise.
       </h1>
 
-      <p class="mt-12 max-w-2xl font-body text-xl font-normal italic leading-tight tracking-tight text-white sm:mt-14 sm:text-2xl xl:text-3xl">
-        Nuestro propósito es brindar respaldo técnico, profesionalismo y soluciones de logística internacional a clientes que necesitan un socio confiable detrás de cada operación.
-      </p>
-
       <a
-        href="#contacto"
+        href="/#contacto"
         class="mt-12 inline-flex min-h-16 items-center border border-white bg-brand-blue/85 px-6 py-3 font-body text-xl font-light italic leading-none transition-colors hover:bg-brand-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:mt-14 sm:min-w-64 sm:justify-center sm:text-2xl"
       >
         CONTACTANOS

@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroPage from '../components/HeroPage.astro';
+import ContactLocations from '../components/contact/ContactLocations.astro';
+---
+
+<BaseLayout
+  title="Contacto | Pronave"
+  description="Contactá al equipo de Pronave para consultas sobre logística internacional y servicios especializados."
+>
+  <HeroPage
+    image="/images/contacto/hero.jpg"
+    imageAlt="Equipo de Pronave en reunión de trabajo en oficina"
+  />
+  <ContactLocations />
+</BaseLayout>

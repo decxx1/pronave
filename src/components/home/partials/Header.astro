@@ -1,17 +1,30 @@
 ---
-const menuItems = [
+const pageItems = [
+  { label: 'INICIO', href: '/' },
+  { label: 'SERVICIOS', href: '/services' },
+  { label: 'NOSOTROS', href: '/nosotros' },
+  { label: 'CONTACTO', href: '/contacto' },
+];
+
+const sectionItems = [
   { label: 'SERVICIOS\nSOLUCIONES', href: '#servicios' },
   { label: 'NOSOTROS', href: '#nosotros' },
   { label: 'NUESTRO\nRECORRIDO', href: '#recorrido' },
   { label: 'ALIADOS\nESTRATÉGICOS', href: '#aliados' },
-  { label: 'QUIÉNES CONFÍAN\nEN NOSOTROS', href: '#clientes' },
+  { label: 'QUIÉNES CONFÍAN\nEN NOSOTROS', href: '#partners' },
   { label: 'NÚMEROS', href: '#numeros' },
   { label: 'FORMULARIO\nDE CONTACTO', href: '#contacto' },
 ];
+
+const isHome = Astro.url.pathname === '/';
 ---
 
-<header class="absolute inset-x-0 top-0 z-40">
-  <div class="relative mx-auto w-full max-w-310 px-6 pt-8 sm:px-10 sm:pt-12 lg:px-12 lg:pt-20 xl:px-16 xl:pt-28 2xl:px-0">
+<header
+  data-site-header
+  data-scrolled="false"
+  class="group fixed inset-x-0 top-0 z-50 border-b border-transparent bg-transparent transition-colors duration-300 data-[scrolled=true]:border-white/20 data-[scrolled=true]:bg-brand-blue/95 data-[scrolled=true]:shadow-lg data-[scrolled=true]:backdrop-blur-md"
+>
+  <div class="relative mx-auto w-full max-w-310 px-6 pb-2 pt-8 transition-all duration-300 group-data-[scrolled=true]:pt-4 sm:px-10 sm:pt-12 sm:group-data-[scrolled=true]:pt-4 lg:px-12 lg:pt-20 lg:group-data-[scrolled=true]:pt-4 xl:px-16 xl:pt-28 xl:group-data-[scrolled=true]:pt-4 2xl:px-0">
     <div class="flex items-start justify-between">
       <a href="/" aria-label="Pronave, inicio" class="block w-44 sm:w-52 xl:w-56">
         <img src="/images/logos/logo-full-white.svg" alt="Pronave Logistics support" loading="lazy" class="h-auto w-full" />
@@ -34,31 +47,73 @@ const menuItems = [
 
     <div
       id="site-menu"
-      class="absolute right-6 top-full mt-5 max-h-svh w-72 max-w-full overflow-y-auto bg-white text-black opacity-0 shadow-2xl invisible pointer-events-none translate-y-2 transition duration-200 ease-out data-[open=true]:visible data-[open=true]:translate-y-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto sm:right-10 sm:w-80 lg:right-12 xl:right-16 2xl:right-0"
+      class="invisible pointer-events-none absolute right-6 top-full z-50 max-h-svh w-72 max-w-full translate-y-2 overflow-y-auto bg-white text-black opacity-0 shadow-2xl transition duration-200 ease-out data-[open=true]:visible data-[open=true]:translate-y-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto sm:right-10 sm:w-80 md:overflow-visible lg:right-12 xl:right-16 2xl:right-0"
       aria-hidden="true"
     >
-      <div class="px-7 pb-7 pt-5 sm:px-8 sm:pb-8 sm:pt-6">
-        <div class="flex justify-end">
-          <button
-            type="button"
-            data-menu-close
-            aria-label="Cerrar menú"
-            class="font-display text-4xl font-medium leading-none transition-opacity hover:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
-          >
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
+      <div class="px-7 pb-7 pt-0 sm:px-8 sm:pb-8 sm:pt-0">
+        <nav aria-label="Navegación principal" class="mt-0 w-full">
+          <div data-menu-layout class="relative">
+            <ul>
+              {pageItems.map((item, index) => (
+                <li class="relative border-b border-black last:border-b-0">
+                  <div
+                    data-home-trigger={isHome && index === 0 ? true : undefined}
+                    class="flex items-center"
+                  >
+                    <a href={item.href} data-menu-link class="block min-w-0 flex-1 whitespace-pre-line py-4 font-display text-xl font-medium leading-none tracking-tighter transition-opacity hover:opacity-55 sm:py-5 sm:text-2xl">
+                      {item.label}
+                    </a>
 
-        <nav aria-label="Navegación principal" class="mt-5 w-full">
-          <ul>
-            {menuItems.map((item) => (
-              <li class="border-b border-black last:border-b-0">
-                <a href={item.href} data-menu-link class="block whitespace-pre-line py-4 font-display text-xl font-medium leading-none tracking-tighter transition-opacity hover:opacity-55 sm:py-5 sm:text-2xl">
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+                    {isHome && index === 0 && (
+                      <button
+                        type="button"
+                        data-home-sections-toggle
+                        data-open="false"
+                        aria-controls="home-sections-mobile"
+                        aria-expanded="false"
+                        aria-label="Abrir secciones de Inicio"
+                        class="group flex size-10 shrink-0 items-center justify-center transition-opacity hover:opacity-55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black md:hidden"
+                      >
+                        <span aria-hidden="true" class="font-display text-3xl font-light leading-none transition-transform duration-200 group-data-[open=true]:rotate-45">+</span>
+                      </button>
+                    )}
+                  </div>
+
+                  {isHome && index === 0 && (
+                    <>
+                      <div
+                        id="home-sections-mobile"
+                        data-home-sections-mobile
+                        data-open="false"
+                        aria-hidden="true"
+                        class="hidden border-t border-black/30 pl-4 data-[open=true]:block md:hidden"
+                      >
+                        {sectionItems.map((section) => (
+                          <a href={section.href} data-menu-link class="block whitespace-pre-line border-b border-black/30 py-3 font-display text-lg font-medium leading-none tracking-tighter transition-opacity last:border-b-0 hover:opacity-55 sm:py-4 sm:text-xl">
+                            {section.label}
+                          </a>
+                        ))}
+                      </div>
+
+                      <div
+                        id="home-sections-desktop"
+                        data-home-sections-desktop
+                        data-open="false"
+                        aria-hidden="true"
+                        class="invisible pointer-events-none absolute right-full top-0 z-10 hidden w-64 max-w-[calc(100vw-2rem)] translate-x-2 bg-white px-5 py-2 opacity-0 shadow-2xl transition-all duration-200 before:absolute before:inset-y-0 before:-right-4 before:w-4 before:content-[''] data-[open=true]:visible data-[open=true]:translate-x-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto md:block"
+                      >
+                        {sectionItems.map((section) => (
+                          <a href={section.href} data-menu-link class="block whitespace-pre-line border-b border-black/30 py-3 font-display text-lg font-medium leading-none tracking-tighter transition-opacity last:border-b-0 hover:opacity-55 sm:py-4 sm:text-xl">
+                            {section.label}
+                          </a>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
         </nav>
       </div>
     </div>
@@ -68,9 +123,18 @@ const menuItems = [
 <script>
   const menu = document.querySelector<HTMLElement>('#site-menu');
   const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
-  const close = document.querySelector<HTMLButtonElement>('[data-menu-close]');
   const links = document.querySelectorAll<HTMLAnchorElement>('[data-menu-link]');
   const menuLabel = document.querySelector<HTMLElement>('[data-menu-label]');
+  const siteHeader = document.querySelector<HTMLElement>('[data-site-header]');
+  const menuLayout = document.querySelector<HTMLElement>('[data-menu-layout]');
+  const homeTrigger = document.querySelector<HTMLElement>('[data-home-trigger]');
+  const homeSectionsMobile = document.querySelector<HTMLElement>('[data-home-sections-mobile]');
+  const homeSectionsDesktop = document.querySelector<HTMLElement>('[data-home-sections-desktop]');
+  const homeSectionsToggle = document.querySelector<HTMLButtonElement>('[data-home-sections-toggle]');
+
+  const updateHeader = () => {
+    siteHeader?.setAttribute('data-scrolled', String(window.scrollY > 24));
+  };
 
   const setMenuState = (isOpen: boolean) => {
     if (!menu || !toggle) return;
@@ -81,11 +145,51 @@ const menuItems = [
     toggle.setAttribute('aria-expanded', String(isOpen));
     toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
     if (menuLabel) menuLabel.textContent = isOpen ? 'Cerrar menú' : 'Abrir menú';
+    setHomeSectionsState(false);
+  };
+
+  const isDesktop = () => window.matchMedia('(min-width: 48rem)').matches;
+
+  const setHomeSectionsState = (isOpen: boolean, target: 'mobile' | 'desktop' | 'all' = 'all') => {
+    if ((target === 'all' || target === 'mobile') && homeSectionsMobile) {
+      homeSectionsMobile.dataset.open = String(isOpen);
+      homeSectionsMobile.setAttribute('aria-hidden', String(!isOpen));
+    }
+
+    if ((target === 'all' || target === 'desktop') && homeSectionsDesktop) {
+      homeSectionsDesktop.dataset.open = String(isOpen);
+      homeSectionsDesktop.setAttribute('aria-hidden', String(!isOpen));
+    }
+
+    if (homeSectionsToggle && (target === 'all' || target === 'mobile')) {
+      homeSectionsToggle.dataset.open = String(isOpen);
+      homeSectionsToggle.setAttribute('aria-expanded', String(isOpen));
+      homeSectionsToggle.setAttribute('aria-label', isOpen ? 'Cerrar secciones de Inicio' : 'Abrir secciones de Inicio');
+    }
   };
 
   toggle?.addEventListener('click', () => setMenuState(menu?.dataset.open !== 'true'));
-  close?.addEventListener('click', () => setMenuState(false));
-  links.forEach((link) => link.addEventListener('click', () => setMenuState(false)));
+  homeSectionsToggle?.addEventListener('click', () => {
+    setHomeSectionsState(homeSectionsMobile?.dataset.open !== 'true', 'mobile');
+  });
+
+  const homePageItem = homeTrigger?.closest('li');
+  homePageItem?.addEventListener('mouseenter', () => {
+    if (isDesktop() && menu?.dataset.open === 'true') {
+      setHomeSectionsState(true, 'desktop');
+    }
+  });
+  homePageItem?.addEventListener('mouseleave', () => {
+    if (isDesktop()) setHomeSectionsState(false, 'desktop');
+  });
+
+  menuLayout?.addEventListener('mouseleave', () => {
+    if (isDesktop()) setHomeSectionsState(false, 'desktop');
+  });
+  links.forEach((link) => link.addEventListener('click', () => {
+    setHomeSectionsState(false);
+    setMenuState(false);
+  }));
 
   document.addEventListener('click', (event) => {
     if (!menu || !toggle || menu.dataset.open !== 'true') return;
@@ -98,5 +202,13 @@ const menuItems = [
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') setMenuState(false);
+  });
+
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  window.addEventListener('resize', () => {
+    if (menu?.dataset.open === 'true') {
+      setHomeSectionsState(false, 'all');
+    }
   });
 </script>

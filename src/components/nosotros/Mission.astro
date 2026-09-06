@@ -1,0 +1,43 @@
+---
+const paragraphs = [
+  'Llevamos a cabo proyectos de comercio exterior que requieren soporte técnico capacitado y experto. Aseguramos trazabilidad de principio a fin. Resolvemos contingencias y damos soluciones en cada etapa de la operación.',
+  'Nuestra misión es asegurar el desarrollo comercial de nuestros clientes.',
+];
+---
+
+<section id="mision" class="relative overflow-hidden bg-linear-to-r from-mission-start to-mission-end py-10 text-white lg:py-0">
+  <img
+    src="/images/shapes/shape-arrow.svg"
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+    class="pointer-events-none absolute top-1/2 left-0 z-0 h-[115%] w-auto max-w-[95%] -translate-y-1/2 object-contain object-left opacity-20 lg:hidden"
+  />
+
+  <div class="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-0 xl:gap-16 2xl:mx-auto 2xl:w-full 2xl:max-w-310 2xl:px-0">
+    <div class="hidden items-center justify-start overflow-hidden lg:-ml-44 lg:flex lg:h-120 lg:px-0">
+      <img
+        src="/images/shapes/shape-arrow.svg"
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        class="h-full w-auto max-w-full object-contain object-left"
+      />
+    </div>
+
+    <div class="px-6 text-right sm:px-10 lg:pl-8 lg:pr-12 2xl:px-0">
+      <div class="ml-auto inline-block text-left">
+        <h3 class="font-body text-3xl font-semibold leading-none tracking-tight sm:text-4xl lg:text-5xl">
+          Misión
+        </h3>
+        <span aria-hidden="true" class="mt-4 block h-1.5 w-full bg-white sm:mt-5"></span>
+      </div>
+
+      <div class="mt-8 space-y-6 font-body text-base leading-relaxed tracking-tight sm:mt-10 sm:text-lg lg:text-xl">
+        {paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

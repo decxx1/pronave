@@ -1,0 +1,41 @@
+---
+const paragraphs = [
+  'En Pronave ofrecemos soporte logístico y técnico especializado para operaciones de comercio exterior que requieren precisión, trazabilidad y adaptabilidad constante. Acompañamos a freight forwarders, líneas marítimas y empresas con un modelo de trabajo basado en el conocimiento aplicado, experiencia práctica y presencia constante en los desafíos críticos que exige la operación.',
+  'Brindamos respaldo técnico para que nuestros clientes puedan desarrollar su negocio con continuidad, seguridad y confianza. Somos un socio estable, ético y profesional, capaz de sostener operaciones complejas y contingencias reales con criterio técnico y compromiso.',
+];
+---
+
+<section id="propuesta-valor" class="bg-white py-14 text-ink sm:py-20 lg:py-24">
+  <div class="mx-auto w-full max-w-310 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-0">
+    <div class="relative flex items-center justify-center">
+      <span aria-hidden="true" class="absolute inset-x-0 border-t-2 border-black"></span>
+      <h2 class="relative bg-brand-blue px-8 py-4 font-body text-2xl font-normal tracking-tight text-white sm:px-14 sm:py-5 sm:text-4xl lg:text-5xl">
+        NOSOTROS
+      </h2>
+    </div>
+  </div>
+
+  <div class="mt-14 grid grid-cols-1 items-stretch gap-8 sm:mt-16 lg:mt-20 lg:grid-cols-2 lg:gap-0 xl:mx-auto xl:w-full xl:max-w-310 xl:gap-16 xl:px-16 2xl:px-0">
+    <div class="px-6 sm:px-10 lg:pl-12 lg:pr-8 xl:px-0">
+      <h3 class="font-body text-3xl font-semibold leading-none tracking-tight sm:text-4xl lg:text-5xl">
+        Propuesta de valor
+      </h3>
+      <span aria-hidden="true" class="mt-4 block h-1.5 w-full max-w-80 bg-brand-blue sm:mt-5"></span>
+
+      <div class="mt-8 space-y-6 font-body text-base leading-relaxed tracking-tight sm:mt-10 sm:text-lg lg:text-xl">
+        {paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+
+    <div class="h-64 overflow-hidden sm:h-72 md:h-96 lg:h-144 lg:min-h-80 xl:min-h-full">
+      <img
+        src="/images/nosotros/personal.jpg"
+        alt="Personal de Pronave con chalecos de seguridad en terminal de contenedores"
+        loading="lazy"
+        class="h-full w-full object-cover object-center"
+      />
+    </div>
+  </div>
+</section>

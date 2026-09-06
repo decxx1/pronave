@@ -1,0 +1,44 @@
+---
+const valuePairs = [
+  ['Especialización técnica.', 'Adaptación.'],
+  ['Responsabilidad operativa.', 'Visión a futuro.'],
+  ['Confiabilidad.', 'Compromiso.'],
+  ['Trabajo en equipo.', 'Acompañamiento continuo.'],
+];
+
+const valueCardClass =
+  'flex items-center px-6 sm:px-8 py-3 sm:py-4 font-body text-xl font-semibold italic leading-snug tracking-tight text-white sm:text-xl lg:text-2xl';
+---
+
+<section id="valores" class="bg-white py-14 text-ink sm:py-20 lg:py-24">
+  <div class="mx-auto w-full max-w-310 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-0">
+    <div class="text-center">
+      <h3 class="font-body text-3xl font-semibold leading-none tracking-tight sm:text-4xl lg:text-5xl">
+        Valores
+      </h3>
+      <span aria-hidden="true" class="mx-auto mt-4 block h-1.5 w-full max-w-36 bg-brand-blue sm:mt-5"></span>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-2 sm:mt-12 sm:grid-cols-2 sm:gap-4 lg:mt-14">
+      {valuePairs.flatMap((pair, rowIndex) =>
+        pair.map((label) => (
+          <div
+            class:list={[
+              valueCardClass,
+              'justify-start',
+              rowIndex % 2 === 0
+                ? 'bg-linear-to-r from-values-dark-start to-values-dark-end'
+                : 'bg-linear-to-r from-values-light-start to-values-light-end',
+            ]}
+          >
+            {label}
+          </div>
+        ))
+      )}
+
+      <div class:list={[valueCardClass, 'justify-center bg-linear-to-r from-values-dark-start to-values-dark-end sm:col-span-2']}>
+        Ética profesional.
+      </div>
+    </div>
+  </div>
+</section>

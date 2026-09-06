@@ -1,0 +1,167 @@
+---
+import {
+  CONTACT_ADDRESS,
+  CONTACT_CHILE_ADDRESS,
+  CONTACT_CHILE_EMAIL,
+  CONTACT_CHILE_HOURS,
+  CONTACT_CHILE_PHONE,
+  CONTACT_EMAIL,
+  CONTACT_HOURS,
+  CONTACT_PHONE,
+  CONTACT_TERMINAL1_ADDRESS,
+  CONTACT_TERMINAL1_EMAIL,
+  CONTACT_TERMINAL1_HOURS,
+  CONTACT_TERMINAL1_PHONE,
+  CONTACT_TERMINAL2_ADDRESS,
+  CONTACT_TERMINAL2_EMAIL,
+  CONTACT_TERMINAL2_HOURS,
+  CONTACT_TERMINAL2_PHONE,
+} from 'astro:env/client';
+
+type ContactField = {
+  icon: string;
+  alt: string;
+  content?: string;
+  href?: string;
+};
+
+const buildContactFields = (data: {
+  phone?: string;
+  email?: string;
+  hours?: string;
+  address?: string;
+}): ContactField[] =>
+  [
+    {
+      icon: 'icon-celu-contact.svg',
+      alt: 'Teléfono',
+      content: data.phone,
+      href: data.phone ? `tel:${data.phone.replace(/\D/g, '')}` : undefined,
+    },
+    {
+      icon: 'icon-email-contact.svg',
+      alt: 'Correo electrónico',
+      content: data.email,
+      href: data.email ? `mailto:${data.email}` : undefined,
+    },
+    {
+      icon: 'icon-clock-contact.svg',
+      alt: 'Horarios de atención',
+      content: data.hours,
+    },
+    {
+      icon: 'icon-map-contact.svg',
+      alt: 'Dirección',
+      content: data.address,
+    },
+  ].filter((item): item is ContactField & { content: string } => Boolean(item.content));
+
+const locations = [
+  {
+    title: 'Oficina central',
+    tone: 'dark' as const,
+    items: buildContactFields({
+      phone: CONTACT_PHONE,
+      email: CONTACT_EMAIL,
+      hours: CONTACT_HOURS,
+      address: CONTACT_ADDRESS,
+    }),
+  },
+  {
+    title: 'Terminal 1',
+    tone: 'light' as const,
+    items: buildContactFields({
+      phone: CONTACT_TERMINAL1_PHONE,
+      email: CONTACT_TERMINAL1_EMAIL,
+      hours: CONTACT_TERMINAL1_HOURS,
+      address: CONTACT_TERMINAL1_ADDRESS,
+    }),
+  },
+  {
+    title: 'Terminal 2',
+    tone: 'dark' as const,
+    items: buildContactFields({
+      phone: CONTACT_TERMINAL2_PHONE,
+      email: CONTACT_TERMINAL2_EMAIL,
+      hours: CONTACT_TERMINAL2_HOURS,
+      address: CONTACT_TERMINAL2_ADDRESS,
+    }),
+  },
+  {
+    title: 'Chile',
+    subtitle: '(Documentación)',
+    tone: 'light' as const,
+    items: buildContactFields({
+      phone: CONTACT_CHILE_PHONE,
+      email: CONTACT_CHILE_EMAIL,
+      hours: CONTACT_CHILE_HOURS,
+      address: CONTACT_CHILE_ADDRESS,
+    }),
+  },
+].filter((location) => location.items.length > 0);
+---
+
+<section id="contacto-locations" class="bg-white py-14 text-ink sm:py-20 lg:py-24">
+  <div class="mx-auto w-full max-w-310 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-0">
+    <div class="relative flex items-center justify-center">
+      <span aria-hidden="true" class="absolute inset-x-0 border-t-2 border-black"></span>
+      <h2 class="relative bg-brand-blue px-8 py-4 font-body text-2xl font-normal tracking-tight text-white sm:px-14 sm:py-5 sm:text-4xl lg:text-5xl">
+        CONTACTO
+      </h2>
+    </div>
+
+    <div class="mt-14 grid grid-cols-1 items-stretch gap-8 overflow-visible sm:mt-16 lg:mt-20 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-10 xl:gap-16">
+      <div class="flex flex-col gap-8 overflow-visible sm:gap-10">
+        {locations.map((location) => (
+          <article class="overflow-visible">
+            <div
+              class:list={[
+                'py-3 pr-5 font-body text-xl font-semibold text-white sm:py-4 sm:pr-6 sm:text-2xl',
+                '-ml-6 pl-6 sm:-ml-10 sm:pl-10 lg:w-fit lg:-ml-12 lg:pl-24 lg:text-3xl',
+                'xl:-ml-16 xl:pl-28 2xl:ml-0 2xl:pl-12',
+                location.tone === 'dark'
+                  ? 'bg-linear-to-r from-values-dark-start to-values-dark-end'
+                  : 'bg-linear-to-r from-values-light-start to-values-light-end',
+              ]}
+            >
+              {location.title}
+              {'subtitle' in location && location.subtitle && (
+                <span class="font-normal italic"> {location.subtitle}</span>
+              )}
+            </div>
+
+            <ul class="mt-5 space-y-4 font-body font-medium text-base sm:mt-6 sm:space-y-5 sm:text-lg">
+              {location.items.map((item) => (
+                <li class="flex items-center justify-start gap-4 sm:gap-5">
+                  <img
+                    src={`/images/contacto/${item.icon}`}
+                    alt={item.alt}
+                    loading="lazy"
+                    class="mt-0.5 size-6 shrink-0 object-contain sm:size-7"
+                  />
+                  {item.href ? (
+                    <a href={item.href} class="leading-snug transition-opacity hover:opacity-70">
+                      {item.content}
+                    </a>
+                  ) : (
+                    <span class="leading-snug">{item.content}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+
+      <div class="relative hidden min-h-80 overflow-hidden bg-brand-blue lg:block lg:min-h-full pr-210">
+        <img
+          src="/images/shapes/big-symbol-shape-transparent.svg"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          class="pointer-events-none absolute top-0 -left-20 h-full w-full object-contain"
+        />
+      </div>
+    </div>
+  </div>
+</section>
