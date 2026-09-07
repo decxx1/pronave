@@ -1,25 +1,37 @@
 import { useState } from 'react';
-import { ENDPOINT, SECRET_KEY, SITE_KEY } from 'astro:env/client';
+import { CONTACT_EMAIL, ENDPOINT, SECRET_KEY, SITE_KEY } from 'astro:env/client';
 
 const initialFormData = {
   name: '',
   email: '',
-  company: '',
   phone: '',
-  interest: '',
   message: '',
 };
 
-/** @param {{ addressee?: string }} props */
-export default function ContactFormReact({ addressee = '' }) {
+/** @typedef {typeof initialFormData} FormData */
+/** @typedef {Partial<Record<keyof FormData, string>>} FieldErrors */
+/** @typedef {{ errors?: FieldErrors; message?: string }} ApiError */
+
+export default function ContactFormReact() {
   const [formData, setFormData] = useState(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
+  /** @type {[FieldErrors, import('react').Dispatch<import('react').SetStateAction<FieldErrors>>]} */
+  const [fieldErrors, setFieldErrors] = useState(/** @type {FieldErrors} */ ({}));
 
-  /** @param {import('react').ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>} event */
+  /** @param {import('react').ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} event */
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((previous) => ({ ...previous, [name]: value }));
+    if (name in initialFormData) {
+      setFieldErrors((previous) => {
+        const fieldName = /** @type {keyof FormData} */ (name);
+        if (!previous[fieldName]) return previous;
+        const next = { ...previous };
+        delete next[fieldName];
+        return next;
+      });
+    }
   };
 
   /** @param {import('react').SyntheticEvent<HTMLFormElement>} event */
@@ -27,6 +39,7 @@ export default function ContactFormReact({ addressee = '' }) {
     event.preventDefault();
     setIsSubmitting(true);
     setMessage({ text: '', type: '' });
+    setFieldErrors({});
 
     try {
       const recaptcha = window.grecaptcha;
@@ -35,16 +48,19 @@ export default function ContactFormReact({ addressee = '' }) {
         throw new Error('El formulario no está configurado correctamente.');
       }
 
-      const token = await recaptcha.execute(SITE_KEY, { action: 'submit' });
+      const token = await recaptcha.execute(SITE_KEY, { action: 'contacto' });
       const response = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          message: formData.message,
           secret_key: SECRET_KEY,
-          addressee,
-          asunto: 'Nuevo mensaje desde el formulario de contacto',
+          addressee: CONTACT_EMAIL ?? '',
+          asunto: `Contacto desde la web - de: ${formData.name}`,
           token,
-          ...formData,
         }),
       });
 
@@ -58,18 +74,21 @@ export default function ContactFormReact({ addressee = '' }) {
         type: 'success',
       });
       setFormData(initialFormData);
+      setFieldErrors({});
     } catch (error) {
-      let errorMessage = 'Ocurrió un error al enviar el mensaje. Por favor, intenta nuevamente.';
+      /** @type {ApiError | Error | unknown} */
+      const apiError = error;
 
-      if (error && typeof error === 'object' && 'errors' in error && error.errors) {
-        const formErrors = error.errors;
-        const firstError = Object.values(formErrors)[0];
-        if (typeof firstError === 'string') errorMessage = firstError;
-      } else if (error instanceof Error && error.message) {
-        errorMessage = error.message;
+      if (apiError && typeof apiError === 'object' && 'errors' in apiError && apiError.errors) {
+        setFieldErrors(apiError.errors);
+      } else if (apiError && typeof apiError === 'object' && 'message' in apiError && typeof apiError.message === 'string') {
+        setMessage({ text: apiError.message, type: 'error' });
+      } else {
+        setMessage({
+          text: 'Ocurrió un error al enviar el mensaje. Por favor, intenta nuevamente.',
+          type: 'error',
+        });
       }
-
-      setMessage({ text: errorMessage, type: 'error' });
     } finally {
       setIsSubmitting(false);
     }
@@ -86,44 +105,27 @@ export default function ContactFormReact({ addressee = '' }) {
           <span className="sr-only">Nombre y Apellido</span>
           <span aria-hidden="true" className="absolute left-1 top-2 font-display text-sm font-semibold">*</span>
           <input type="text" name="name" placeholder="Nombre y Apellido" value={formData.name} onChange={handleChange} required className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
-        </label>
-
-        <label className="relative block">
-          <span className="sr-only">Mail</span>
-          <span aria-hidden="true" className="absolute left-1 top-2 font-display text-sm font-semibold">*</span>
-          <input type="email" name="email" placeholder="Mail" value={formData.email} onChange={handleChange} required className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
+          {fieldErrors.name && <p className="mt-1 font-display text-xs text-red-700">{fieldErrors.name}</p>}
         </label>
 
         <label className="block">
-          <span className="sr-only">Empresa</span>
-          <input type="text" name="company" placeholder="Empresa" value={formData.company} onChange={handleChange} className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
+          <span className="sr-only">Teléfono</span>
+          <input type="tel" name="phone" placeholder="Teléfono" value={formData.phone} onChange={handleChange} className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
+          {fieldErrors.phone && <p className="mt-1 font-display text-xs text-red-700">{fieldErrors.phone}</p>}
         </label>
 
         <label className="relative block">
-          <span className="sr-only">Número</span>
+          <span className="sr-only">E-mail</span>
           <span aria-hidden="true" className="absolute left-1 top-2 font-display text-sm font-semibold">*</span>
-          <input type="tel" name="phone" placeholder="Número" value={formData.phone} onChange={handleChange} required className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
+          <input type="email" name="email" placeholder="E-mail" value={formData.email} onChange={handleChange} required className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
+          {fieldErrors.email && <p className="mt-1 font-display text-xs text-red-700">{fieldErrors.email}</p>}
         </label>
 
         <label className="relative block">
-          <span className="sr-only">Interés principal</span>
-          <span aria-hidden="true" className="absolute left-1 top-2 font-display text-sm font-semibold">*</span>
-          <select name="interest" value={formData.interest} onChange={handleChange} required className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none focus:border-brand-blue">
-            <option value="">Interés principal</option>
-            <option value="servicios">Servicios</option>
-            <option value="soluciones">Soluciones</option>
-            <option value="otro">Otro</option>
-          </select>
-        </label>
-
-        <label className="block">
           <span className="sr-only">Mensaje</span>
-          <textarea name="message" placeholder="Mensaje" value={formData.message} onChange={handleChange} required rows={3} className="w-full resize-none border-b-2 border-contact-blue bg-transparent px-1 py-2 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
-        </label>
-
-        <label className="flex items-start gap-2 pt-1 font-display text-xs leading-tight">
-          <input type="checkbox" required className="mt-0.5 accent-contact-blue" />
-          <span>Acepto el uso de mis datos para ser contactado por Pronave.</span>
+          <span aria-hidden="true" className="absolute left-1 top-2 font-display text-sm font-semibold">*</span>
+          <textarea name="message" placeholder="Mensaje" value={formData.message} onChange={handleChange} required rows={3} className="w-full resize-none border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
+          {fieldErrors.message && <p className="mt-1 font-display text-xs text-red-700">{fieldErrors.message}</p>}
         </label>
 
         {message.text && (

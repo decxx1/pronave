@@ -98,10 +98,10 @@ const isHome = Astro.url.pathname === '/';
                         data-home-sections-desktop
                         data-open="false"
                         aria-hidden="true"
-                        class="invisible pointer-events-none absolute right-full top-0 z-10 hidden w-64 max-w-[calc(100vw-2rem)] translate-x-2 bg-white px-5 py-2 opacity-0 shadow-2xl transition-all duration-200 before:absolute before:inset-y-0 before:-right-4 before:w-4 before:content-[''] data-[open=true]:visible data-[open=true]:translate-x-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto md:block"
+                        class="invisible pointer-events-none absolute right-[calc(100%-1.25rem)] top-0 z-10 hidden w-56 max-w-[calc(100vw-2rem)] translate-x-3 bg-white px-4 py-2 opacity-0 shadow-2xl transition-all duration-200 before:absolute before:inset-y-0 before:-right-5 before:w-5 before:content-[''] data-[open=true]:visible data-[open=true]:translate-x-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto md:block"
                       >
                         {sectionItems.map((section) => (
-                          <a href={section.href} data-menu-link class="block whitespace-pre-line border-b border-black/30 py-3 font-display text-lg font-medium leading-none tracking-tighter transition-opacity last:border-b-0 hover:opacity-55 sm:py-4 sm:text-xl">
+                          <a href={section.href} data-menu-link class="block whitespace-pre-line border-b border-black/30 py-2.5 font-display text-base font-medium leading-none tracking-tighter transition-opacity last:border-b-0 hover:opacity-55 sm:py-3">
                             {section.label}
                           </a>
                         ))}
