@@ -24,10 +24,70 @@ const metrics = [
           data-aos-delay={index * 90}
         >
           {index > 0 && <span aria-hidden="true" class="absolute bottom-6 left-0 hidden h-10 border-l-4 border-white/75 md:block"></span>}
-          <strong class="font-display text-5xl font-semibold leading-none tracking-tighter sm:text-6xl lg:text-7xl">{metric.value}</strong>
+          <strong
+            class="font-display text-5xl font-semibold leading-none tracking-tighter sm:text-6xl lg:text-7xl"
+            data-count-up={metric.value}
+          >
+            {metric.value}
+          </strong>
           <span class="mt-4 whitespace-pre-line font-body text-sm xs:text-base font-normal leading-tight sm:text-lg lg:text-xl">{metric.label}</span>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  const counters = Array.from(document.querySelectorAll<HTMLElement>('[data-count-up]'));
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const duration = 1850;
+
+  const animateCounter = (counter: HTMLElement) => {
+    if (counter.dataset.counted === 'true') return;
+
+    const target = Number(counter.dataset.countUp);
+    if (!Number.isFinite(target)) return;
+
+    counter.dataset.counted = 'true';
+
+    if (prefersReducedMotion) {
+      counter.textContent = String(target);
+      return;
+    }
+
+    const startTime = performance.now();
+    counter.textContent = '0';
+
+    const updateCounter = (currentTime: number) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = 1 - (1 - progress) ** 3;
+      counter.textContent = String(Math.round(target * easedProgress));
+
+      if (progress < 1) {
+        window.requestAnimationFrame(updateCounter);
+      } else {
+        counter.textContent = String(target);
+      }
+    };
+
+    window.requestAnimationFrame(updateCounter);
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          animateCounter(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.55 },
+    );
+
+    counters.forEach((counter) => observer.observe(counter));
+  } else {
+    counters.forEach(animateCounter);
+  }
+</script>
