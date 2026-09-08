@@ -12,7 +12,7 @@ const valueCardClass =
 
 <section id="valores" class="bg-white py-14 text-ink sm:py-20 lg:py-24">
   <div class="mx-auto w-full max-w-310 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-0">
-    <div class="text-center">
+    <div class="text-center" data-aos="fade-up">
       <h3 class="font-body text-3xl font-semibold leading-none tracking-tight sm:text-4xl lg:text-5xl">
         Valores
       </h3>
@@ -21,7 +21,7 @@ const valueCardClass =
 
     <div class="mt-10 grid grid-cols-1 gap-2 sm:mt-12 sm:grid-cols-2 sm:gap-4 lg:mt-14">
       {valuePairs.flatMap((pair, rowIndex) =>
-        pair.map((label) => (
+        pair.map((label, columnIndex) => (
           <div
             class:list={[
               valueCardClass,
@@ -30,13 +30,19 @@ const valueCardClass =
                 ? 'bg-linear-to-r from-values-dark-start to-values-dark-end'
                 : 'bg-linear-to-r from-values-light-start to-values-light-end',
             ]}
+            data-aos="fade-up"
+            data-aos-delay={(rowIndex * 2 + columnIndex) * 60}
           >
             {label}
           </div>
         ))
       )}
 
-      <div class:list={[valueCardClass, 'justify-center bg-linear-to-r from-values-dark-start to-values-dark-end sm:col-span-2']}>
+      <div
+        class:list={[valueCardClass, 'justify-center bg-linear-to-r from-values-dark-start to-values-dark-end sm:col-span-2']}
+        data-aos="fade-up"
+        data-aos-delay="480"
+      >
         Ética profesional.
       </div>
     </div>

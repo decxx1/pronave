@@ -2,14 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroPage from '../components/HeroPage.astro';
 import Solutions from '../components/services/Solutions.astro';
+import type { SEOProps } from '../types/seo';
+
+const seo = {
+  title: 'Pronave | Servicios logísticos especializados',
+  metaDescription:
+    'Servicios para contenedores dry, reefer, ISO tanks y flexitanks, terminal, soporte in situ y transporte nacional e internacional con respaldo técnico.',
+  canonical: '/services/',
+  image: '/images/servicios/hero.webp',
+  imageAlt: 'Grúa portuaria trasladando un contenedor en una terminal logística',
+} satisfies SEOProps;
 ---
 
-<BaseLayout
-  title="Services | Pronave"
-  description="Soluciones de logística internacional y servicios especializados de Pronave."
->
+<BaseLayout seo={seo}>
   <HeroPage
-    image="/images/servicios/hero.jpeg"
+    image="/images/servicios/hero.webp"
     imageAlt="Grúa portuaria trasladando un contenedor en una terminal logística"
   />
   <Solutions />

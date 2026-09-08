@@ -72,3 +72,11 @@ body {
   color: var(--color-sand);
   background: var(--color-accent);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

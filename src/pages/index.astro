@@ -6,10 +6,20 @@ import AboutUs from '../components/home/partials/AboutUs.astro';
 import Partners from '../components/home/partials/Partners.astro';
 import Numbers from '../components/home/partials/Numbers.astro';
 import ContactForm from '../components/home/partials/ContactForm.astro';
+import type { SEOProps } from '../types/seo';
 import { SITE_KEY } from 'astro:env/client';
+
+const seo = {
+  title: 'Pronave | Soluciones logísticas internacionales',
+  metaDescription:
+    'Soluciones técnicas y logísticas para comercio exterior: contenedores, flexitanks, transporte y soporte especializado para operaciones confiables y ágiles.',
+  canonical: '/',
+  image: '/images/home/hero.avif',
+  imageAlt: 'Terminal portuaria con contenedores',
+} satisfies SEOProps;
 ---
 
-<BaseLayout>
+<BaseLayout seo={seo}>
   <Hero />
   <Services />
   <AboutUs />

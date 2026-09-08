@@ -1,17 +1,18 @@
 ---
 import '../styles/global.css';
+import 'aos/dist/aos.css';
 import Footer from '../components/Footer.astro';
 import Header from '../components/home/partials/Header.astro';
+import type { SEOProps } from '../types/seo';
 
 interface Props {
-  title?: string;
-  description?: string;
+  seo: SEOProps;
 }
 
-const {
-  title = 'Pronave',
-  description = 'Una nueva experiencia digital.',
-} = Astro.props;
+const { seo } = Astro.props;
+const site = Astro.site ?? new URL('https://pronave.com.ar');
+const canonical = new URL(seo.canonical, site).href;
+const fullImg = new URL(seo.image, site).href;
 ---
 
 <!doctype html>
@@ -19,13 +20,74 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
+
+    <!-- Favicons -->
+    <link href="/images/logos/favicon/favicon.svg" type="image/svg+xml" rel="icon" />
+    <link href="/images/logos/favicon/faviconx56.png" type="image/png" sizes="56x56" rel="icon" />
+    <link href="/images/logos/favicon/faviconx32.png" type="image/png" sizes="32x32" rel="icon" />
+    <link href="/images/logos/favicon/faviconx16.png" type="image/png" sizes="16x16" rel="icon" />
+    <link href="/images/logos/favicon/faviconx180.png" rel="apple-touch-icon" sizes="180x180" />
+
+    <title>{seo.title}</title>
+
+    <!-- SEO -->
+    <link rel="canonical" href={canonical} />
+    <meta name="description" content={seo.metaDescription} />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Expires" content="Mon, 01 Jul 1970 00:00:00 GMT" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Facebook Open Graph -->
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.metaDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={fullImg} />
+    <meta property="og:image:alt" content={seo.imageAlt} />
+    <meta property="og:site_name" content="Pronave" />
+    <meta property="og:locale" content="es_AR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    {seo.twitterSite && <meta name="twitter:site" content={seo.twitterSite} />}
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.metaDescription} />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:image" content={fullImg} />
+    <meta name="twitter:image:alt" content={seo.imageAlt} />
   </head>
   <body>
     <Header />
     <slot />
     <Footer />
+
+    <script>
+      import AOS from 'aos';
+
+      let isAOSInitialized = false;
+
+      const initializeAOS = () => {
+        if (isAOSInitialized) {
+          requestAnimationFrame(() => AOS.refreshHard());
+          return;
+        }
+
+        AOS.init({
+          duration: 700,
+          easing: 'ease-out-cubic',
+          offset: 80,
+          once: true,
+          mirror: false,
+          disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+        });
+
+        isAOSInitialized = true;
+        requestAnimationFrame(() => AOS.refresh());
+      };
+
+      initializeAOS();
+      document.addEventListener('astro:page-load', initializeAOS);
+    </script>
   </body>
 </html>

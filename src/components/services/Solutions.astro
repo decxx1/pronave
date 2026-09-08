@@ -16,7 +16,7 @@ const solutions: Solution[] = [
     id: 'terminal',
     title: 'Terminal de contenedores marítimos',
     icon: 'ship-icon.svg',
-    image: '/images/servicios/1.jpeg',
+    image: '/images/servicios/1.webp',
     imageAlt: 'Fila de contenedores apilados en terminal, con unidades ONE en primer plano',
     imageSide: 'right',
     highlight: 'Brindamos infraestructura y equipamiento especializado para la manipulación segura y eficiente de contenedores durante las operaciones de carga, descarga y almacenamiento.',
@@ -29,7 +29,7 @@ const solutions: Solution[] = [
     id: 'dry',
     title: 'Contenedores Dry',
     icon: 'container-dry-icon.svg',
-    image: '/images/servicios/2.jpeg',
+    image: '/images/servicios/2.webp',
     imageAlt: 'Contenedor dry ONE con las puertas abiertas en predio logístico',
     imageSide: 'left',
     items: [
@@ -45,7 +45,7 @@ const solutions: Solution[] = [
     id: 'reefer',
     title: 'Contenedores Reefer',
     icon: 'container-icon.svg',
-    image: '/images/servicios/3.jpeg',
+    image: '/images/servicios/3.webp',
     imageAlt: 'Técnico realizando mantenimiento en un contenedor reefer Star Cool',
     imageSide: 'right',
     highlight: 'Soporte técnico especializado para mantener la cadena de frío y asegurar el correcto funcionamiento de contenedores refrigerados.',
@@ -64,7 +64,7 @@ const solutions: Solution[] = [
     id: 'iso-tank',
     title: 'ISO Tank Containers',
     icon: 'container-tank-icon.svg',
-    image: '/images/servicios/4.jpeg',
+    image: '/images/servicios/4.webp',
     imageAlt: 'Reach stacker izando un ISO tank container Stolt en patio logístico',
     imageSide: 'left',
     highlight: 'Servicios técnicos para la atención integral de tank containers, cumpliendo con los estándares requeridos para cada operación.',
@@ -79,7 +79,7 @@ const solutions: Solution[] = [
     id: 'flexitanks',
     title: 'Flexitanks',
     icon: 'container-flex-tank-icon.svg',
-    image: '/images/servicios/5.JPG',
+    image: '/images/servicios/5.webp',
     imageAlt: 'Flexitank instalado en el interior de un contenedor con bulkhead y manguera de carga',
     imageSide: 'right',
     highlight: 'Soluciones para operaciones de carga líquida a granel, con supervisión técnica y acompañamiento durante todo el proceso:',
@@ -93,7 +93,7 @@ const solutions: Solution[] = [
     id: 'in-situ',
     title: 'Servicios In Situ',
     icon: 'medal-icon.svg',
-    image: '/images/servicios/6.jpeg',
+    image: '/images/servicios/6.webp',
     imageAlt: 'Control de temperatura en fruta paletizada con termómetro digital Hanna Checktemp',
     imageSide: 'left',
     highlight: 'Asistencia técnica especializada directamente en el lugar donde la operación lo requiere, brindando respuesta rápida y continuidad operativa.',
@@ -110,7 +110,7 @@ const solutions: Solution[] = [
     id: 'transporte',
     title: 'Transporte Terrestre',
     icon: 'transport-icon.svg',
-    image: '/images/servicios/7.jpeg',
+    image: '/images/servicios/7.webp',
     imageAlt: 'Camión refrigerado circulando por un paisaje de montaña nevada',
     imageSide: 'right',
     highlight: 'Servicio de transporte adaptado a los requerimientos específicos de cada operación logística.',
@@ -125,9 +125,9 @@ const solutions: Solution[] = [
 ];
 ---
 
-<section id="soluciones" class="bg-white py-14 text-ink sm:py-20 lg:py-24">
+<section id="soluciones" class="overflow-hidden bg-white py-14 text-ink sm:py-20 lg:py-24">
   <div class="mx-auto w-full max-w-310 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-0">
-    <div class="relative flex items-center justify-center">
+    <div class="relative flex items-center justify-center" data-aos="fade-up">
       <span aria-hidden="true" class="absolute inset-x-0 border-t-2 border-black"></span>
       <h2 class="relative bg-brand-blue px-8 py-4 font-body text-2xl font-normal tracking-tight text-white sm:px-14 sm:py-5 sm:text-4xl lg:text-5xl">
         SERVICIOS <span class="mx-2 sm:mx-4">|</span> SOLUCIONES
@@ -147,7 +147,10 @@ const solutions: Solution[] = [
             ? 'lg:order-2 lg:pl-8 lg:pr-12'
             : 'lg:order-1 lg:pl-12 lg:pr-8',
           'xl:px-0',
-        ]}>
+        ]}
+          data-aos={solution.imageSide === 'left' ? 'fade-left' : 'fade-right'}
+          data-aos-duration="750"
+        >
             <div class="flex items-center gap-4 sm:gap-5">
               <img
                 src={`/images/home/icons/${solution.icon}`}
@@ -193,7 +196,11 @@ const solutions: Solution[] = [
           <div class:list={[
             'min-h-64 overflow-hidden sm:min-h-80 lg:min-h-80 xl:min-h-full',
             solution.imageSide === 'left' ? 'lg:order-1' : 'lg:order-2',
-          ]}>
+          ]}
+            data-aos={solution.imageSide === 'left' ? 'fade-right' : 'fade-left'}
+            data-aos-delay="100"
+            data-aos-duration="800"
+          >
             <img
               src={solution.image}
               alt={solution.imageAlt}

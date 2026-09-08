@@ -103,7 +103,7 @@ const locations = [
 
 <section id="contacto-locations" class="bg-white py-14 text-ink sm:py-20 lg:py-24 overflow-hidden">
   <div class="mx-auto w-full max-w-310 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-0">
-    <div class="relative flex items-center justify-center">
+    <div class="relative flex items-center justify-center" data-aos="fade-up">
       <span aria-hidden="true" class="absolute inset-x-0 border-t-2 border-black"></span>
       <h2 class="relative bg-brand-blue px-8 py-4 font-body text-2xl font-normal tracking-tight text-white sm:px-14 sm:py-5 sm:text-4xl lg:text-5xl">
         CONTACTO
@@ -112,8 +112,12 @@ const locations = [
 
     <div class="mt-14 grid grid-cols-1 items-stretch gap-8 overflow-visible sm:mt-16 lg:mt-20 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-10 xl:gap-16">
       <div class="flex flex-col gap-8 overflow-visible sm:gap-10">
-        {locations.map((location) => (
-          <article class="overflow-visible">
+        {locations.map((location, index) => (
+          <article
+            class="overflow-visible"
+            data-aos="fade-right"
+            data-aos-delay={index * 80}
+          >
             <div
               class:list={[
                 'py-3 pr-5 font-body text-xl font-semibold text-white sm:py-4 sm:pr-6 sm:text-2xl',
@@ -153,7 +157,12 @@ const locations = [
         ))}
       </div>
 
-      <div class="relative hidden min-h-80 overflow-hidden bg-brand-blue lg:block lg:min-h-full pr-210">
+      <div
+        class="relative hidden min-h-80 overflow-hidden bg-brand-blue lg:block lg:min-h-full pr-210"
+        data-aos="fade-left"
+        data-aos-delay="120"
+        data-aos-duration="800"
+      >
         <img
           src="/images/shapes/big-symbol-shape-transparent.svg"
           alt=""

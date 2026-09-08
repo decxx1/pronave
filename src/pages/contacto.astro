@@ -2,14 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroPage from '../components/HeroPage.astro';
 import ContactLocations from '../components/contact/ContactLocations.astro';
+import type { SEOProps } from '../types/seo';
+
+const seo = {
+  title: 'Pronave | Contacto y asesoramiento logístico',
+  metaDescription:
+    'Contactá a Pronave para recibir asesoramiento en logística internacional, contenedores, flexitanks, transporte terrestre y soporte técnico especializado.',
+  canonical: '/contacto/',
+  image: '/images/contacto/hero.webp',
+  imageAlt: 'Equipo de Pronave en reunión de trabajo',
+} satisfies SEOProps;
 ---
 
-<BaseLayout
-  title="Contacto | Pronave"
-  description="Contactá al equipo de Pronave para consultas sobre logística internacional y servicios especializados."
->
+<BaseLayout seo={seo}>
   <HeroPage
-    image="/images/contacto/hero.jpg"
+    image="/images/contacto/hero.webp"
     imageAlt="Equipo de Pronave en reunión de trabajo en oficina"
   />
   <ContactLocations />
