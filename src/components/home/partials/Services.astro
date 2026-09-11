@@ -1,12 +1,12 @@
 ---
 const services = [
-  { name: 'Flexitanks', icon: 'container-flex-tank-icon.svg' },
-  { name: 'ISO Tank\nContainers', icon: 'container-tank-icon.svg' },
-  { name: 'Contenedores\nDry', icon: 'container-dry-icon.svg' },
-  { name: 'Contenedores\nReefer', icon: 'container-icon.svg' },
-  { name: 'Servicios\nIn Situ', icon: 'medal-icon.svg' },
-  { name: 'Terminal de\nconectores marítimos', icon: 'ship-icon.svg' },
-  { name: 'Transporte\nTerrestre', icon: 'transport-icon.svg' },
+  { id: 'flexitanks', name: 'Flexitanks', icon: 'container-flex-tank-icon.svg' },
+  { id: 'iso-tank', name: 'ISO Tank\nContainers', icon: 'container-tank-icon.svg' },
+  { id: 'dry', name: 'Contenedores\nDry', icon: 'container-dry-icon.svg' },
+  { id: 'reefer', name: 'Contenedores\nReefer', icon: 'container-icon.svg' },
+  { id: 'in-situ', name: 'Servicios\nIn Situ', icon: 'medal-icon.svg' },
+  { id: 'terminal', name: 'Terminal de\nconectores marítimos', icon: 'ship-icon.svg' },
+  { id: 'transporte', name: 'Transporte\nTerrestre', icon: 'transport-icon.svg' },
 ];
 ---
 
@@ -33,18 +33,21 @@ const services = [
         <div data-services-track class="-mx-2 flex w-auto transition-transform duration-500 ease-out">
           {services.map((service) => (
             <div class="w-full shrink-0 px-2 xs:w-1/2 md:w-1/3 lg:w-1/4">
-              <article class="flex h-52 flex-col items-center justify-center border-2 border-black px-3 text-center sm:h-56">
+              <a
+                href={`/services#${service.id}`}
+                class="group flex h-52 flex-col items-center justify-center border-2 border-black px-3 text-center transition-colors duration-300 hover:border-brand-blue hover:bg-brand-blue hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue sm:h-56"
+              >
                 <img
                   src={`/images/home/icons/${service.icon}`}
                   alt={service.name.replace('\n', ' ')}
                   loading="lazy"
                   aria-hidden="true"
-                  class="h-20 w-24 object-contain"
+                  class="h-20 w-24 object-contain transition-[filter] duration-300 group-hover:brightness-0 group-hover:invert"
                 />
                 <h3 class="mt-5 whitespace-pre-line font-body text-2xl font-normal leading-none tracking-tight">
                   {service.name}
                 </h3>
-              </article>
+              </a>
             </div>
           ))}
         </div>
