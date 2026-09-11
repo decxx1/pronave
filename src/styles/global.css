@@ -70,7 +70,7 @@ body {
 
 ::selection {
   color: var(--color-sand);
-  background: var(--color-accent);
+  background: var(--color-values-light-end);
 }
 
 @media (prefers-reduced-motion: reduce) {
