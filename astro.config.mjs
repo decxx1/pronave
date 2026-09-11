@@ -32,6 +32,7 @@ export default defineConfig({
       CONTACT_CHILE_HOURS: envField.string({ context: 'client', access: 'public', optional: true }),
       CONTACT_CHILE_ADDRESS: envField.string({ context: 'client', access: 'public', optional: true }),
       SOCIAL_LINKEDIN_URL: envField.string({ context: 'client', access: 'public', optional: true }),
+      SOCIAL_FACEBOOK_URL: envField.string({ context: 'client', access: 'public', optional: true }),
       SOCIAL_INSTAGRAM_URL: envField.string({ context: 'client', access: 'public', optional: true }),
       SOCIAL_WHATSAPP_URL: envField.string({ context: 'client', access: 'public', optional: true }),
     },

@@ -14,7 +14,7 @@ const services = [
   <div class="mx-auto w-full max-w-310 px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-0">
     <div class="relative flex items-center justify-center" data-aos="fade-up">
       <span aria-hidden="true" class="absolute inset-x-0 border-t-2 border-black"></span>
-      <h2 class="relative bg-brand-blue px-8 py-4 font-body text-2xl font-normal tracking-tight text-white sm:px-14 sm:py-5 sm:text-4xl lg:text-5xl">
+      <h2 class="relative bg-brand-blue px-2 py-4 font-body text-2xl font-normal tracking-tight text-white sm:px-14 sm:py-5 sm:text-4xl lg:text-5xl">
         SERVICIOS <span class="mx-2 sm:mx-4">|</span> SOLUCIONES
       </h2>
     </div>
@@ -36,12 +36,12 @@ const services = [
               <article class="flex h-52 flex-col items-center justify-center border-2 border-black px-3 text-center sm:h-56">
                 <img
                   src={`/images/home/icons/${service.icon}`}
-                  alt=""
+                  alt={service.name.replace('\n', ' ')}
                   loading="lazy"
                   aria-hidden="true"
-                  class="h-16 w-20 object-contain sm:h-20 sm:w-24"
+                  class="h-20 w-24 object-contain"
                 />
-                <h3 class="mt-5 whitespace-pre-line font-body text-xl font-normal leading-none tracking-tight sm:text-2xl">
+                <h3 class="mt-5 whitespace-pre-line font-body text-2xl font-normal leading-none tracking-tight">
                   {service.name}
                 </h3>
               </article>

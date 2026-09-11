@@ -4,6 +4,7 @@ import {
   CONTACT_EMAIL,
   CONTACT_HOURS,
   CONTACT_PHONE,
+  SOCIAL_FACEBOOK_URL,
   SOCIAL_INSTAGRAM_URL,
   SOCIAL_LINKEDIN_URL,
   SOCIAL_WHATSAPP_URL,
@@ -36,6 +37,7 @@ const contactItems = [
 
 const socialItems = [
   { icon: 'linkedin-icon.svg', alt: 'LinkedIn', href: SOCIAL_LINKEDIN_URL },
+  { icon: 'facebook-icon.svg', alt: 'Facebook', href: SOCIAL_FACEBOOK_URL },
   { icon: 'instagram-icon.svg', alt: 'Instagram', href: SOCIAL_INSTAGRAM_URL },
   { icon: 'whatsapp-icon.svg', alt: 'WhatsApp', href: SOCIAL_WHATSAPP_URL },
 ].filter((item) => item.href);
@@ -45,7 +47,7 @@ const socialItems = [
   <div class="relative h-24 overflow-hidden bg-contact-blue">
     <img
       src="/images/shapes/symbol-shape-transparent.svg"
-      alt=""
+      alt="Símbolo de Pronave"
       aria-hidden="true"
       loading="lazy"
       class="pointer-events-none absolute right-0 top-1/2 h-40 w-auto -translate-y-1/2 sm:right-[10%]"

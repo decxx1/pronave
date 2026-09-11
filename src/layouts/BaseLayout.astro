@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import 'aos/dist/aos.css';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/home/partials/Header.astro';
 import type { SEOProps } from '../types/seo';
@@ -61,6 +62,7 @@ const fullImg = new URL(seo.image, site).href;
     <Header />
     <slot />
     <Footer />
+    <FloatingWhatsApp />
 
     <script>
       import AOS from 'aos';
@@ -91,3 +93,18 @@ const fullImg = new URL(seo.image, site).href;
     </script>
   </body>
 </html>
+<style is:global>
+	/*recaptcha*/
+	.grecaptcha-badge {
+		width: 70px !important;
+		height: 60px !important;
+		overflow: hidden !important;
+		transition: all 0.3s ease !important;
+		left: 4px !important;
+		z-index: 100;
+	}
+
+	.grecaptcha-badge:hover {
+		width: 256px !important;
+	}
+</style>

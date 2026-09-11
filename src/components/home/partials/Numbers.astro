@@ -1,9 +1,8 @@
 ---
 const metrics = [
-  { value: '24', label: 'Tiempo sin incidentes\nen cargas o entregas' },
-  { value: '159', label: 'Proyectos que llegaron\nen tiempo y en forma' },
-  { value: '30', label: 'Empresas confían en\nnuestros servicios' },
-  { value: '4', label: 'Certificaciones' },
+  { value: '1015', label: 'Cold treatments\ncumplidos' },
+  { value: '7803', label: 'Flexitanks cargados\nsin incidencias' },
+  { value: '1460', label: 'Días sin accidentes' },
 ];
 ---
 
@@ -16,14 +15,19 @@ const metrics = [
   />
 
   <div class="absolute inset-x-0 bottom-0 bg-black/60">
-    <div class="mx-auto grid w-full max-w-310 grid-cols-2 md:grid-cols-4">
+    <div class="mx-auto grid w-full max-w-310 grid-cols-1 sm:grid-cols-3">
       {metrics.map((metric, index) => (
         <div
-          class="relative flex min-h-32 flex-col items-center justify-center px-4 py-5 text-center sm:min-h-36 sm:py-6"
+          class="relative flex min-h-28 flex-col items-center justify-center px-4 py-4 text-center sm:min-h-36 sm:py-6"
           data-aos="fade-up"
           data-aos-delay={index * 90}
         >
-          {index > 0 && <span aria-hidden="true" class="absolute bottom-6 left-0 hidden h-10 border-l-4 border-white/75 md:block"></span>}
+          {index > 0 && (
+            <>
+              <span aria-hidden="true" class="absolute inset-x-10 top-0 border-t border-white/35 sm:hidden"></span>
+              <span aria-hidden="true" class="absolute bottom-6 left-0 hidden h-10 border-l-4 border-white/75 sm:block"></span>
+            </>
+          )}
           <strong
             class="font-display text-5xl font-semibold leading-none tracking-tighter sm:text-6xl lg:text-7xl"
             data-count-up={metric.value}
