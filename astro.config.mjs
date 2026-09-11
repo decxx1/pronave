@@ -35,6 +35,7 @@ export default defineConfig({
       SOCIAL_FACEBOOK_URL: envField.string({ context: 'client', access: 'public', optional: true }),
       SOCIAL_INSTAGRAM_URL: envField.string({ context: 'client', access: 'public', optional: true }),
       SOCIAL_WHATSAPP_URL: envField.string({ context: 'client', access: 'public', optional: true }),
+      FLOAT_WHATSAPP_URL: envField.string({ context: 'client', access: 'public', optional: true }),
     },
   },
 });
