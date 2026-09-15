@@ -1,24 +1,69 @@
 ---
-import '../styles/global.css';
+import '@/styles/global.css';
 import 'aos/dist/aos.css';
-import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/home/partials/Header.astro';
-import type { SEOProps } from '../types/seo';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp.astro';
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/home/partials/Header.astro';
+import { getLocalizedPath, getOpenGraphLocale, locales } from '@/i18n/config';
+import type { Locale, PageKey } from '@/i18n/config';
+import { getTranslations } from '@/i18n/translations';
+import type { SEOProps } from '@/types/seo';
 
 interface Props {
   seo: SEOProps;
+  locale: Locale;
+  page: PageKey;
 }
 
-const { seo } = Astro.props;
+const { seo, locale, page } = Astro.props;
+const { common } = getTranslations(locale);
 const site = Astro.site ?? new URL('https://pronave.com.ar');
-const canonical = new URL(seo.canonical, site).href;
+const canonical = new URL(getLocalizedPath(locale, page), site).href;
 const fullImg = new URL(seo.image, site).href;
+const alternateLocales = locales.map((alternateLocale) => ({
+  locale: alternateLocale,
+  href: new URL(getLocalizedPath(alternateLocale, page), site).href,
+}));
+const openGraphLocale = getOpenGraphLocale(locale);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
+    <script is:inline>
+      (() => {
+        const preferenceKey = 'pronave-locale';
+        const isHomePath = window.location.pathname === '/' || window.location.pathname === '';
+
+        if (!isHomePath) return;
+
+        let savedLocale = null;
+        try {
+          savedLocale = window.localStorage.getItem(preferenceKey);
+        } catch {
+          // Ignore storage restrictions and continue with browser detection.
+        }
+
+        if (savedLocale === 'es') return;
+        if (savedLocale === 'en') {
+          window.location.replace('/en/');
+          return;
+        }
+
+        const languages = Array.isArray(navigator.languages) && navigator.languages.length
+          ? navigator.languages
+          : [navigator.language];
+        const preferredLocale = languages
+          .map((language) => language.toLowerCase())
+          .map((language) => (language.startsWith('en') ? 'en' : language.startsWith('es') ? 'es' : null))
+          .find(Boolean);
+
+        if (preferredLocale === 'en') {
+          window.location.replace('/en/');
+        }
+      })();
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
@@ -33,6 +78,10 @@ const fullImg = new URL(seo.image, site).href;
 
     <!-- SEO -->
     <link rel="canonical" href={canonical} />
+    {alternateLocales.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.locale} href={alternate.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(getLocalizedPath('es', page), site).href} />
     <meta name="description" content={seo.metaDescription} />
     <meta http-equiv="Cache-Control" content="no-cache" />
     <meta http-equiv="Expires" content="Mon, 01 Jul 1970 00:00:00 GMT" />
@@ -47,7 +96,12 @@ const fullImg = new URL(seo.image, site).href;
     <meta property="og:image" content={fullImg} />
     <meta property="og:image:alt" content={seo.imageAlt} />
     <meta property="og:site_name" content="Pronave" />
-    <meta property="og:locale" content="es_AR" />
+    <meta property="og:locale" content={openGraphLocale} />
+    {alternateLocales
+      .filter((alternate) => alternate.locale !== locale)
+      .map((alternate) => (
+        <meta property="og:locale:alternate" content={getOpenGraphLocale(alternate.locale)} />
+      ))}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
@@ -59,10 +113,10 @@ const fullImg = new URL(seo.image, site).href;
     <meta name="twitter:image:alt" content={seo.imageAlt} />
   </head>
   <body>
-    <Header />
+    <Header content={common.header} locale={locale} page={page} />
     <slot />
-    <Footer />
-    <FloatingWhatsApp />
+    <Footer content={common.footer} locale={locale} />
+    <FloatingWhatsApp content={common.whatsapp} />
 
     <script>
       import AOS from 'aos';

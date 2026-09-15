@@ -1,0 +1,24 @@
+---
+import HeroPage from '@/components/HeroPage.astro';
+import ContactLocations from '@/components/contact/ContactLocations.astro';
+import type { Locale } from '@/i18n/config';
+import { getTranslations } from '@/i18n/translations';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { SEOProps } from '@/types/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { contact } = getTranslations(locale);
+const seo = {
+  ...contact.seo,
+  image: '/images/contacto/hero.webp',
+} satisfies SEOProps;
+---
+
+<BaseLayout seo={seo} locale={locale} page="contact">
+  <HeroPage image="/images/contacto/hero.webp" content={contact.hero} locale={locale} />
+  <ContactLocations content={contact.locations} locale={locale} />
+</BaseLayout>

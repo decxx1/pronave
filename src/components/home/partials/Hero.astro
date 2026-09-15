@@ -1,7 +1,17 @@
+---
+import type { HomeTranslations } from '@/i18n/translations';
+
+interface Props {
+  content: HomeTranslations['hero'];
+}
+
+const { content } = Astro.props;
+---
+
 <section class="hero relative isolate flex min-h-svh items-start overflow-hidden bg-hero text-white">
   <img
     src="/images/home/hero.avif"
-    alt="Vista aérea de una terminal portuaria con contenedores"
+    alt={content.imageAlt}
     loading="lazy"
     class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
   />
@@ -9,7 +19,7 @@
 
   <img
     src="/images/shapes/symbol-shape.svg"
-    alt="Símbolo de Pronave"
+    alt={content.decorativeAlt}
     aria-hidden="true"
     loading="lazy"
     class="pointer-events-none max-md:hidden absolute max-xs:left-10 bottom-0 z-0 w-96 max-w-252 xs:-right-64 xs:bottom-10 xs:w-full sm:-right-48 sm:bottom-4 sm:w-lg md:-right-80 md:bottom-10 md:w-xl xl:-right-44 xl:bottom-10 xl:w-2xl"
@@ -25,8 +35,8 @@
         data-aos="fade-up"
         data-aos-duration="800"
       >
-        Built on trust.<br />
-        Driven by expertise.
+        {content.titleLineOne}<br />
+        {content.titleLineTwo}
       </h1>
 
       <p
@@ -34,7 +44,7 @@
         data-aos="fade-up"
         data-aos-delay="120"
       >
-        Nuestro propósito es brindar respaldo técnico, profesionalismo y soluciones de logística internacional a clientes que necesitan un socio confiable detrás de cada operación.
+        {content.description}
       </p>
 
       <a
@@ -43,7 +53,7 @@
         data-aos="fade-up"
         data-aos-delay="220"
       >
-        CONTACTANOS
+        {content.contactCta}
       </a>
     </div>
   </div>

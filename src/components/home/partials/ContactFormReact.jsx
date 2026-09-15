@@ -11,8 +11,10 @@ const initialFormData = {
 /** @typedef {typeof initialFormData} FormData */
 /** @typedef {Partial<Record<keyof FormData, string>>} FieldErrors */
 /** @typedef {{ errors?: FieldErrors; message?: string }} ApiError */
+/** @typedef {import('@/i18n/translations').HomeTranslations['contactForm']['form']} ContactFormContent */
 
-export default function ContactFormReact() {
+/** @param {{ content: ContactFormContent }} props */
+export default function ContactFormReact({ content }) {
   const [formData, setFormData] = useState(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
@@ -45,7 +47,7 @@ export default function ContactFormReact() {
       const recaptcha = window.grecaptcha;
 
       if (!recaptcha || !SITE_KEY || !SECRET_KEY || !ENDPOINT) {
-        throw new Error('El formulario no está configurado correctamente.');
+        throw new Error(content.configurationError);
       }
 
       const token = await recaptcha.execute(SITE_KEY, { action: 'contacto' });
@@ -59,7 +61,7 @@ export default function ContactFormReact() {
           message: formData.message,
           secret_key: SECRET_KEY,
           addressee: CONTACT_EMAIL ?? '',
-          asunto: `Contacto desde la web - de: ${formData.name}`,
+          asunto: content.emailSubject.replace('{{name}}', formData.name),
           token,
         }),
       });
@@ -70,7 +72,7 @@ export default function ContactFormReact() {
       }
 
       setMessage({
-        text: '¡Mensaje enviado correctamente! Te responderemos pronto.',
+        text: content.successMessage,
         type: 'success',
       });
       setFormData(initialFormData);
@@ -85,7 +87,7 @@ export default function ContactFormReact() {
         setMessage({ text: apiError.message, type: 'error' });
       } else {
         setMessage({
-          text: 'Ocurrió un error al enviar el mensaje. Por favor, intenta nuevamente.',
+          text: content.genericError,
           type: 'error',
         });
       }
@@ -97,34 +99,34 @@ export default function ContactFormReact() {
   return (
     <div className="relative z-10 mx-auto w-full max-w-100 bg-white p-6 text-ink shadow-xl sm:p-8">
       <h3 className="mb-6 bg-contact-blue px-3 py-3 text-center font-display text-xl font-semibold leading-none text-white sm:text-2xl">
-        Formulario de contacto
+        {content.title}
       </h3>
 
       <form className="space-y-4" onSubmit={handleSubmit} noValidate>
         <label className="relative block">
-          <span className="sr-only">Nombre y Apellido</span>
+          <span className="sr-only">{content.fields.name}</span>
           <span aria-hidden="true" className="absolute left-1 top-2 font-display text-sm font-semibold">*</span>
-          <input type="text" name="name" placeholder="Nombre y Apellido" value={formData.name} onChange={handleChange} required className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
+          <input type="text" name="name" placeholder={content.fields.name} value={formData.name} onChange={handleChange} required className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
           {fieldErrors.name && <p className="mt-1 font-display text-xs text-red-700">{fieldErrors.name}</p>}
         </label>
 
         <label className="block">
-          <span className="sr-only">Teléfono</span>
-          <input type="tel" name="phone" placeholder="Teléfono" value={formData.phone} onChange={handleChange} className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
+          <span className="sr-only">{content.fields.phone}</span>
+          <input type="tel" name="phone" placeholder={content.fields.phone} value={formData.phone} onChange={handleChange} className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
           {fieldErrors.phone && <p className="mt-1 font-display text-xs text-red-700">{fieldErrors.phone}</p>}
         </label>
 
         <label className="relative block">
-          <span className="sr-only">E-mail</span>
+          <span className="sr-only">{content.fields.email}</span>
           <span aria-hidden="true" className="absolute left-1 top-2 font-display text-sm font-semibold">*</span>
-          <input type="email" name="email" placeholder="E-mail" value={formData.email} onChange={handleChange} required className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
+          <input type="email" name="email" placeholder={content.fields.email} value={formData.email} onChange={handleChange} required className="w-full border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
           {fieldErrors.email && <p className="mt-1 font-display text-xs text-red-700">{fieldErrors.email}</p>}
         </label>
 
         <label className="relative block">
-          <span className="sr-only">Mensaje</span>
+          <span className="sr-only">{content.fields.message}</span>
           <span aria-hidden="true" className="absolute left-1 top-2 font-display text-sm font-semibold">*</span>
-          <textarea name="message" placeholder="Mensaje" value={formData.message} onChange={handleChange} required rows={3} className="w-full resize-none border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
+          <textarea name="message" placeholder={content.fields.message} value={formData.message} onChange={handleChange} required rows={3} className="w-full resize-none border-b-2 border-contact-blue bg-transparent px-1 py-2 pl-6 font-display text-sm outline-none placeholder:text-ink focus:border-brand-blue" />
           {fieldErrors.message && <p className="mt-1 font-display text-xs text-red-700">{fieldErrors.message}</p>}
         </label>
 
@@ -135,7 +137,7 @@ export default function ContactFormReact() {
         )}
 
         <button type="submit" disabled={isSubmitting} className="mt-2 w-full cursor-pointer bg-contact-blue px-4 py-3 font-display text-lg font-semibold uppercase tracking-widest text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60">
-          {isSubmitting ? 'Enviando...' : 'Enviar'}
+          {isSubmitting ? content.submitting : content.submit}
         </button>
       </form>
     </div>

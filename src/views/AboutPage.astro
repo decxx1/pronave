@@ -1,0 +1,31 @@
+---
+import HeroPage from '@/components/HeroPage.astro';
+import Mission from '@/components/about/Mission.astro';
+import ValueProposition from '@/components/about/ValueProposition.astro';
+import Values from '@/components/about/Values.astro';
+import Vision from '@/components/about/Vision.astro';
+import type { Locale } from '@/i18n/config';
+import { getTranslations } from '@/i18n/translations';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { SEOProps } from '@/types/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { about } = getTranslations(locale);
+const seo = {
+  ...about.seo,
+  image: '/images/home/nosotros.webp',
+} satisfies SEOProps;
+---
+
+<BaseLayout seo={seo} locale={locale} page="about">
+  <HeroPage image="/images/home/nosotros.webp" content={about.hero} locale={locale} />
+  <ValueProposition content={about.valueProposition} />
+  <Mission content={about.mission} />
+  <Vision content={about.vision} />
+  <Values content={about.values} />
+</BaseLayout>
+

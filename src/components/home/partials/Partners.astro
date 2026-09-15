@@ -1,18 +1,26 @@
 ---
-const partners = [
-  { name: 'AMC', file: 'amc-logo-white.svg' },
-  { name: 'Grupo Peñaflor', file: 'grupo-peñaflor-logo-white.svg' },
-  { name: 'Hoyer', file: 'hoyer-logo-white.svg' },
-  { name: 'Evergreen', file: 'logo-evergreen-white.svg' },
-  { name: 'Maersk Line', file: 'logo-maersk-white.svg' },
-  { name: 'ONE Ocean Network Express', file: 'logo-one-white.svg' },
-  { name: 'Medlog', file: 'medlog-logo-white.svg' },
-  { name: 'Perfopro', file: 'perfopro-logo-white.svg' },
-  { name: 'Robinson', file: 'robinson-logo-white.svg' },
-  { name: 'Solt Nielsen', file: 'solt-nielsen-logo-white.svg' },
-  { name: 'STM', file: 'stm-logo-white.svg' },
-  { name: 'Total Trade Group', file: 'total-trade-group.svg' },
+import type { HomeTranslations } from '@/i18n/translations';
+
+interface Props {
+  content: HomeTranslations['partners'];
+}
+
+const { content } = Astro.props;
+const partnerFiles = [
+  'amc-logo-white.svg',
+  'grupo-peñaflor-logo-white.svg',
+  'hoyer-logo-white.svg',
+  'logo-evergreen-white.svg',
+  'logo-maersk-white.svg',
+  'logo-one-white.svg',
+  'medlog-logo-white.svg',
+  'perfopro-logo-white.svg',
+  'robinson-logo-white.svg',
+  'solt-nielsen-logo-white.svg',
+  'stm-logo-white.svg',
+  'total-trade-group.svg',
 ];
+const partners = content.items.map((name, index) => ({ name, file: partnerFiles[index] }));
 ---
 
 <section id="partners" class="mt-8 bg-linear-to-r from-partners-start to-partners-end py-12 text-white sm:py-16 lg:py-20">
@@ -21,14 +29,14 @@ const partners = [
       class="mx-auto w-fit max-w-full bg-linear-to-r from-partners-title to-transparent px-6 py-4 text-center font-body text-xl font-normal md:leading-none md:tracking-tight sm:px-8 sm:py-5 sm:text-3xl lg:text-4xl"
       data-aos="fade-up"
     >
-      QUIENES CONFÍAN EN NOSOTROS
+      {content.title}
     </h2>
 
     <div class="relative mt-10 sm:mt-14" data-aos="zoom-in">
       <button
         type="button"
         data-partners-prev
-        aria-label="Partners anteriores"
+        aria-label={content.previousLabel}
         class="absolute left-0 top-1/2 z-10 -translate-x-full -translate-y-1/2 px-1 py-3 text-2xl leading-none text-white opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:pointer-events-none disabled:opacity-25 sm:text-3xl"
       >
         <span aria-hidden="true">◀</span>
@@ -54,7 +62,7 @@ const partners = [
       <button
         type="button"
         data-partners-next
-        aria-label="Siguientes partners"
+        aria-label={content.nextLabel}
         class="absolute right-0 top-1/2 z-10 translate-x-full -translate-y-1/2 px-1 py-3 text-2xl leading-none text-white opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:pointer-events-none disabled:opacity-25 sm:text-3xl"
       >
         <span aria-hidden="true">▶</span>

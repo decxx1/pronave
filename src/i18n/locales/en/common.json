@@ -1,0 +1,41 @@
+{
+  "header": {
+    "logoAriaLabel": "Pronave, home",
+    "logoAlt": "Pronave Logistics Support",
+    "navigationLabel": "Main navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menuIconAlt": "Menu",
+    "languageSelectorLabel": "Select language",
+    "languageNames": {
+      "es": "Español",
+      "en": "English"
+    },
+    "navigation": {
+      "home": "HOME",
+      "services": "SERVICES",
+      "about": "ABOUT US",
+      "contact": "CONTACT"
+    }
+  },
+  "footer": {
+    "decorativeAlt": "Pronave symbol",
+    "officeTitle": "Head office",
+    "contactAlts": {
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Business hours",
+      "address": "Address"
+    },
+    "socialNavigationLabel": "Social media",
+    "carbonAmount": "0.2g of CO₂",
+    "carbonPerView": "/ view",
+    "carbonBadge": "Website Carbon",
+    "carbonComparison": "Cleaner than 96% of pages tested",
+    "designedBy": "Designed by"
+  },
+  "whatsapp": {
+    "ariaLabel": "Contact us on WhatsApp",
+    "label": "Inquiries"
+  }
+}

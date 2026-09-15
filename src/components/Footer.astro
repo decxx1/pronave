@@ -2,35 +2,46 @@
 import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
-  CONTACT_HOURS,
+  CONTACT_HOURS_EN,
+  CONTACT_HOURS_ES,
   CONTACT_PHONE,
   SOCIAL_FACEBOOK_URL,
   SOCIAL_INSTAGRAM_URL,
   SOCIAL_LINKEDIN_URL,
   SOCIAL_WHATSAPP_URL,
 } from 'astro:env/client';
+import type { CommonTranslations } from '@/i18n/translations';
+import type { Locale } from '@/i18n/config';
+
+interface Props {
+  content: CommonTranslations['footer'];
+  locale: Locale;
+}
+
+const { content, locale } = Astro.props;
+const officeHours = locale === 'en' ? CONTACT_HOURS_EN : CONTACT_HOURS_ES;
 
 const contactItems = [
   {
     icon: 'phone-icon.svg',
-    alt: 'Teléfono',
+    alt: content.contactAlts.phone,
     content: CONTACT_PHONE,
     href: CONTACT_PHONE ? `tel:${CONTACT_PHONE.replace(/\D/g, '')}` : undefined,
   },
   {
     icon: 'email-icon.svg',
-    alt: 'Correo electrónico',
+    alt: content.contactAlts.email,
     content: CONTACT_EMAIL,
     href: CONTACT_EMAIL ? `mailto:${CONTACT_EMAIL}` : undefined,
   },
   {
     icon: 'clock-icon.svg',
-    alt: 'Horarios de atención',
-    content: CONTACT_HOURS,
+    alt: content.contactAlts.hours,
+    content: officeHours,
   },
   {
     icon: 'map-icon.svg',
-    alt: 'Dirección',
+    alt: content.contactAlts.address,
     content: CONTACT_ADDRESS,
   },
 ].filter((item) => item.content);
@@ -47,7 +58,7 @@ const socialItems = [
   <div class="relative h-24 overflow-hidden bg-contact-blue">
     <img
       src="/images/shapes/symbol-shape-transparent.svg"
-      alt="Símbolo de Pronave"
+      alt={content.decorativeAlt}
       aria-hidden="true"
       loading="lazy"
       class="pointer-events-none absolute right-0 top-1/2 h-40 w-auto -translate-y-1/2 sm:right-[10%]"
@@ -56,7 +67,7 @@ const socialItems = [
 
   <div class="mx-auto flex w-full max-w-310 flex-col gap-12 px-6 py-12 sm:px-10 sm:py-14 lg:flex-row lg:items-end lg:justify-between lg:px-12 lg:py-16 xl:px-16 2xl:px-0">
     <div class="w-full lg:max-w-240">
-      <h2 class="font-display text-3xl font-semibold leading-none sm:text-4xl">Oficina central</h2>
+      <h2 class="font-display text-3xl font-semibold leading-none sm:text-4xl">{content.officeTitle}</h2>
 
       <ul class="mt-8 space-y-5 font-body text-lg sm:text-xl">
         {contactItems.map((item) => (
@@ -76,7 +87,7 @@ const socialItems = [
         ))}
       </ul>
 
-      <nav aria-label="Redes sociales" class="mt-10 flex items-center gap-5">
+      <nav aria-label={content.socialNavigationLabel} class="mt-10 flex items-center gap-5">
         {socialItems.map((item) => (
           <a href={item.href} target="_blank" rel="noreferrer" aria-label={item.alt} class="transition-opacity hover:opacity-70">
             <img
@@ -103,18 +114,18 @@ const socialItems = [
       <li class="mt-1 text-center lg:text-left">
         <span class="inline-flex">
           <span class="border-2 border-[#77bb5d] px-2 py-1 text-sm text-ink lg:text-base">
-            0.2g of CO₂ <em class="whitespace-nowrap not-italic">/ view </em>
+            {content.carbonAmount} <em class="whitespace-nowrap not-italic">{content.carbonPerView} </em>
           </span>
           <span class="-ml-2 border-2 border-[#77bb5d] bg-[#77bb5d] px-2 py-1 text-sm font-bold whitespace-nowrap text-white lg:text-base">
             Website Carbon
           </span>
         </span>
-        <p class="mt-1 text-center text-xs font-light text-ink/70 lg:text-left lg:text-sm">Cleaner than 96% of pages tested</p>
+        <p class="mt-1 text-center text-xs font-light text-ink/70 lg:text-left lg:text-sm">{content.carbonComparison}</p>
       </li>
     </ul>
 
     <p class="text-center text-sm font-light text-ink/70 lg:text-base">
-      Diseñado por{' '}
+      {content.designedBy}{' '}
       <a
         href="https://tresvecestres.com.ar/"
         target="_blank"

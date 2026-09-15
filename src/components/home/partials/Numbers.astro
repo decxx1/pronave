@@ -1,22 +1,24 @@
 ---
-const metrics = [
-  { value: '1015', label: 'Cold treatments\ncumplidos' },
-  { value: '7803', label: 'Flexitanks cargados\nsin incidencias' },
-  { value: '1460', label: 'Días sin accidentes' },
-];
+import type { HomeTranslations } from '@/i18n/translations';
+
+interface Props {
+  content: HomeTranslations['numbers'];
+}
+
+const { content } = Astro.props;
 ---
 
-<section id="numeros" aria-label="Nuestros números" class="relative h-numbers-mobile overflow-hidden bg-hero text-white lg:h-numbers">
+<section id="numeros" aria-label={content.sectionLabel} class="relative h-numbers-mobile overflow-hidden bg-hero text-white lg:h-numbers">
   <img
     src="/images/home/containera.webp"
-    alt="Operación de carga de contenedores en una terminal logística"
+    alt={content.imageAlt}
     loading="lazy"
     class="absolute inset-0 size-full object-cover object-bottom"
   />
 
   <div class="absolute inset-x-0 bottom-0 bg-black/60">
     <div class="mx-auto grid w-full max-w-310 grid-cols-1 sm:grid-cols-3">
-      {metrics.map((metric, index) => (
+      {content.metrics.map((metric, index) => (
         <div
           class="relative flex min-h-28 flex-col items-center justify-center px-4 py-4 text-center sm:min-h-36 sm:py-6"
           data-aos="fade-up"

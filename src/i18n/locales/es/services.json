@@ -1,0 +1,109 @@
+{
+  "seo": {
+    "title": "Pronave | Servicios logísticos especializados",
+    "metaDescription": "Servicios para contenedores dry, reefer, ISO tanks y flexitanks, terminal, soporte in situ y transporte nacional e internacional con respaldo técnico.",
+    "imageAlt": "Grúa portuaria trasladando un contenedor en una terminal logística"
+  },
+  "hero": {
+    "imageAlt": "Grúa portuaria trasladando un contenedor en una terminal logística",
+    "titleLineOne": "Built on trust.",
+    "titleLineTwo": "Driven by expertise.",
+    "contactCta": "CONTACTANOS"
+  },
+  "solutions": {
+    "title": "SERVICIOS",
+    "subtitle": "SOLUCIONES",
+    "items": [
+      {
+        "id": "terminal",
+        "title": "Terminal de contenedores marítimos",
+        "imageAlt": "Fila de contenedores apilados en terminal, con unidades ONE en primer plano",
+        "highlight": "Brindamos infraestructura y equipamiento especializado para la manipulación segura y eficiente de contenedores durante las operaciones de carga, descarga y almacenamiento.",
+        "paragraphs": [
+          "Contamos con grúas Top Lifter y Reach Stacker, además de áreas especialmente preparadas para la limpieza de contenedores mediante hidrolavadoras de agua caliente a alta presión y detergentes aprobados y ambientalmente responsables, garantizando una limpieza eficiente del interior de cada unidad.",
+          "Nuestras instalaciones disponen de vigilancia 24 horas, control de accesos y sistema de videovigilancia (CCTV), asegurando la protección permanente de los equipos y las cargas."
+        ]
+      },
+      {
+        "id": "dry",
+        "title": "Contenedores Dry",
+        "imageAlt": "Contenedor dry ONE con las puertas abiertas en predio logístico",
+        "items": [
+          "Servicios orientados a garantizar la disponibilidad y el correcto estado operativo de contenedores dry.",
+          "Manipuleo y almacenamiento.",
+          "Reparación y mantenimiento.",
+          "Lavado y limpieza.",
+          "Mejoramiento de grado.",
+          "Consolidación y desconsolidación de carga."
+        ]
+      },
+      {
+        "id": "reefer",
+        "title": "Contenedores Reefer",
+        "imageAlt": "Técnico realizando mantenimiento en un contenedor reefer Star Cool",
+        "highlight": "Soporte técnico especializado para mantener la cadena de frío y asegurar el correcto funcionamiento de contenedores refrigerados.",
+        "items": [
+          "Manipuleo y almacenamiento.",
+          "Reparación y mantenimiento.",
+          "Lavado y limpieza.",
+          "Mejoramiento de grado.",
+          "PTI (Pre-Trip Inspection).",
+          "Leak Test.",
+          "Gasificación para atmósfera controlada (AC).",
+          "Centro de servicio autorizado para equipos Star Cool, Carrier y Daikin."
+        ]
+      },
+      {
+        "id": "iso-tank",
+        "title": "ISO Tank Containers",
+        "imageAlt": "Reach stacker izando un ISO tank container Stolt en patio logístico",
+        "highlight": "Servicios técnicos para la atención integral de tank containers, cumpliendo con los estándares requeridos para cada operación.",
+        "items": [
+          "Manipuleo y almacenamiento.",
+          "Lavado grado alimenticio.",
+          "Reparación y mantenimiento.",
+          "Leak Test."
+        ]
+      },
+      {
+        "id": "flexitanks",
+        "title": "Flexitanks",
+        "imageAlt": "Flexitank instalado en el interior de un contenedor con bulkhead y manguera de carga",
+        "highlight": "Soluciones para operaciones de carga líquida a granel, con supervisión técnica y acompañamiento durante todo el proceso:",
+        "items": [
+          "Almacenamiento y montaje de flexitanks.",
+          "Supervisión y atención de carga.",
+          "Provisión de caudalímetros y válvulas."
+        ]
+      },
+      {
+        "id": "in-situ",
+        "title": "Servicios In Situ",
+        "imageAlt": "Control de temperatura en fruta paletizada con termómetro digital Hanna Checktemp",
+        "highlight": "Asistencia técnica especializada directamente en el lugar donde la operación lo requiere, brindando respuesta rápida y continuidad operativa.",
+        "items": [
+          "Cold Treatment (calibración de sensores para tratamientos de frío).",
+          "Supervisión de carga de flexitanks.",
+          "Supervisión de carga de ISO Tank Containers.",
+          "Instalación de cortinas para atmósfera controlada (AC).",
+          "Reparación de contenedores reefer con servicio de emergencia 24/7.",
+          "Flota propia para el traslado de personal técnico."
+        ]
+      },
+      {
+        "id": "transporte",
+        "title": "Transporte Terrestre",
+        "imageAlt": "Camión refrigerado circulando por un paisaje de montaña nevada",
+        "highlight": "Servicio de transporte adaptado a los requerimientos específicos de cada operación logística.",
+        "items": [
+          "Transporte nacional.",
+          "Transporte internacional.",
+          "Transporte con frío activo.",
+          "Transporte de mercancías IMO.",
+          "Transporte de cargas sobredimensionadas."
+        ]
+      }
+    ]
+  }
+}
+

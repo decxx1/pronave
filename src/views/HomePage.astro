@@ -1,0 +1,41 @@
+---
+import { SITE_KEY } from 'astro:env/client';
+import AboutUs from '@/components/home/partials/AboutUs.astro';
+import ContactForm from '@/components/home/partials/ContactForm.astro';
+import Hero from '@/components/home/partials/Hero.astro';
+import Numbers from '@/components/home/partials/Numbers.astro';
+import Partners from '@/components/home/partials/Partners.astro';
+import Services from '@/components/home/partials/Services.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { Locale } from '@/i18n/config';
+import { getTranslations } from '@/i18n/translations';
+import type { SEOProps } from '@/types/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { home } = getTranslations(locale);
+const seo = {
+  ...home.seo,
+  image: '/images/home/hero.avif',
+} satisfies SEOProps;
+---
+
+<BaseLayout seo={seo} locale={locale} page="home">
+  <Hero content={home.hero} />
+  <Services content={home.services} locale={locale} />
+  <AboutUs content={home.about} />
+  <Partners content={home.partners} />
+  <Numbers content={home.numbers} />
+  <ContactForm content={home.contactForm} />
+</BaseLayout>
+
+<!-- reCAPTCHA v3 -->
+<script
+  is:inline
+  async
+  src={'https://www.google.com/recaptcha/api.js?render=' + (SITE_KEY ?? '') + '&hl=' + locale}
+  data-astro-rerun
+></script>

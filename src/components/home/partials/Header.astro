@@ -1,9 +1,20 @@
 ---
-const pageItems = [
-  { label: 'INICIO', href: '/' },
-  { label: 'SERVICIOS', href: '/services' },
-  { label: 'NOSOTROS', href: '/nosotros' },
-  { label: 'CONTACTO', href: '/contacto' },
+import { getLocalizedPath, locales } from '@/i18n/config';
+import type { Locale, PageKey } from '@/i18n/config';
+import type { CommonTranslations } from '@/i18n/translations';
+
+interface Props {
+  content: CommonTranslations['header'];
+  locale: Locale;
+  page: PageKey;
+}
+
+const { content, locale, page } = Astro.props;
+const pageItems: Array<{ key: PageKey; label: string }> = [
+  { key: 'home', label: content.navigation.home },
+  { key: 'services', label: content.navigation.services },
+  { key: 'about', label: content.navigation.about },
+  { key: 'contact', label: content.navigation.contact },
 ];
 ---
 
@@ -14,23 +25,27 @@ const pageItems = [
 >
   <div class="relative mx-auto w-full max-w-310 px-6 pb-2 pt-8 transition-all duration-300 group-data-[scrolled=true]:pt-4 sm:px-10 sm:pt-12 sm:group-data-[scrolled=true]:pt-4 lg:px-12 lg:pt-20 lg:group-data-[scrolled=true]:pt-4 xl:px-16 xl:pt-28 xl:group-data-[scrolled=true]:pt-4 2xl:px-0">
     <div class="flex items-start justify-between">
-      <a href="/" aria-label="Pronave, inicio" class="block w-44 sm:w-52 xl:w-56">
-        <img src="/images/logos/logo-full-white.svg" alt="Pronave Logistics support" loading="lazy" class="h-auto w-full" />
+      <a href={getLocalizedPath(locale, 'home')} aria-label={content.logoAriaLabel} class="block w-32 min-[23rem]:w-44 sm:w-52 xl:w-56">
+        <img src="/images/logos/logo-full-white.svg" alt={content.logoAlt} loading="lazy" class="h-auto w-full" />
       </a>
 
-      <button
-        type="button"
-        data-menu-toggle
-        data-open="false"
-        aria-controls="site-menu"
-        aria-expanded="false"
-        aria-label="Abrir menú"
-        class="group relative mt-1 flex h-12 w-12 items-center justify-center p-1 transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:h-14 sm:w-14"
-      >
-        <span data-menu-label class="sr-only">Abrir menú</span>
-        <img src="/images/icons/hamburguer-icon.svg" alt="Menú" loading="lazy" class="h-auto w-full opacity-100 transition-opacity duration-200 group-data-[open=true]:opacity-0" />
-        <span aria-hidden="true" class="absolute inset-0 flex items-center justify-center pb-1 font-display text-5xl font-light leading-none text-white opacity-0 transition-opacity duration-200 group-data-[open=true]:opacity-100">×</span>
-      </button>
+      <div class="flex items-start">
+        <button
+          type="button"
+          data-menu-toggle
+          data-open="false"
+          data-open-label={content.openMenu}
+          data-close-label={content.closeMenu}
+          aria-controls="site-menu"
+          aria-expanded="false"
+          aria-label={content.openMenu}
+          class="group relative mt-1 flex h-12 w-12 items-center justify-center p-1 transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:h-14 sm:w-14"
+        >
+          <span data-menu-label class="sr-only">{content.openMenu}</span>
+          <img src="/images/icons/hamburguer-icon.svg" alt={content.menuIconAlt} loading="lazy" class="h-auto w-full opacity-100 transition-opacity duration-200 group-data-[open=true]:opacity-0" />
+          <span aria-hidden="true" class="absolute inset-0 flex items-center justify-center pb-1 font-display text-5xl font-light leading-none text-white opacity-0 transition-opacity duration-200 group-data-[open=true]:opacity-100">×</span>
+        </button>
+      </div>
     </div>
 
     <div
@@ -39,11 +54,54 @@ const pageItems = [
       aria-hidden="true"
     >
       <div class="px-7 pb-7 pt-0 sm:px-8 sm:pb-8 sm:pt-0">
-        <nav aria-label="Navegación principal" class="mt-0 w-full">
+        <div class="pt-6" role="group" aria-label={content.languageSelectorLabel}>
+          <p class="font-display text-xs font-semibold uppercase tracking-wider text-black/55">
+            {content.languageSelectorLabel}
+          </p>
+          <div class="mt-3 flex items-center gap-5">
+            {locales.map((itemLocale) => {
+              const accessibleLabel = content.languageNames[itemLocale];
+              const flagFile = itemLocale === 'es' ? 'flag-es.svg' : 'flag-en.svg';
+
+              return itemLocale === locale ? (
+                <span
+                  aria-current="page"
+                  title={accessibleLabel}
+                  class="flex items-center gap-2 font-display text-sm font-semibold text-brand-blue"
+                >
+                  <img src={`/images/icons/${flagFile}`} alt="" aria-hidden="true" class="h-4 w-7 rounded-sm object-cover" />
+                  <span>{accessibleLabel}</span>
+                </span>
+              ) : (
+                <a
+                  href={getLocalizedPath(itemLocale, page)}
+                  hreflang={itemLocale}
+                  lang={itemLocale}
+                  data-locale-link
+                  data-locale={itemLocale}
+                  title={accessibleLabel}
+                  class="flex items-center gap-2 font-display text-sm font-medium text-black/70 transition-colors hover:text-brand-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                >
+                  <img src={`/images/icons/${flagFile}`} alt="" aria-hidden="true" class="h-4 w-7 rounded-sm object-cover" />
+                  <span>{accessibleLabel}</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
+        <div aria-hidden="true" class="mt-5 border-t border-black/20"></div>
+
+        <nav aria-label={content.navigationLabel} class="mt-0 w-full">
           <ul>
             {pageItems.map((item) => (
               <li class="border-b border-black last:border-b-0">
-                <a href={item.href} data-menu-link class="block whitespace-pre-line py-4 font-display text-xl font-medium leading-none tracking-tighter transition-opacity hover:opacity-55 sm:py-5 sm:text-2xl">
+                <a
+                  href={getLocalizedPath(locale, item.key)}
+                  aria-current={item.key === page ? 'page' : undefined}
+                  data-menu-link
+                  class="block whitespace-pre-line py-4 font-display text-xl font-medium leading-none tracking-tighter transition-opacity hover:opacity-55 aria-[current=page]:text-brand-blue sm:py-5 sm:text-2xl"
+                >
                   {item.label}
                 </a>
               </li>
@@ -61,6 +119,7 @@ const pageItems = [
   const links = document.querySelectorAll<HTMLAnchorElement>('[data-menu-link]');
   const menuLabel = document.querySelector<HTMLElement>('[data-menu-label]');
   const siteHeader = document.querySelector<HTMLElement>('[data-site-header]');
+  const localeLinks = document.querySelectorAll<HTMLAnchorElement>('[data-locale-link]');
 
   const updateHeader = () => {
     siteHeader?.setAttribute('data-scrolled', String(window.scrollY > 24));
@@ -69,17 +128,32 @@ const pageItems = [
   const setMenuState = (isOpen: boolean) => {
     if (!menu || !toggle) return;
 
+    const label = isOpen ? toggle.dataset.closeLabel : toggle.dataset.openLabel;
+
     menu.dataset.open = String(isOpen);
     toggle.dataset.open = String(isOpen);
     menu.setAttribute('aria-hidden', String(!isOpen));
     toggle.setAttribute('aria-expanded', String(isOpen));
-    toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
-    if (menuLabel) menuLabel.textContent = isOpen ? 'Cerrar menú' : 'Abrir menú';
+    if (label) toggle.setAttribute('aria-label', label);
+    if (menuLabel && label) menuLabel.textContent = label;
   };
 
   toggle?.addEventListener('click', () => setMenuState(menu?.dataset.open !== 'true'));
 
   links.forEach((link) => link.addEventListener('click', () => setMenuState(false)));
+
+  localeLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      const selectedLocale = link.dataset.locale;
+      if (!selectedLocale) return;
+
+      try {
+        window.localStorage.setItem('pronave-locale', selectedLocale);
+      } catch {
+        // Ignore storage restrictions; navigation can still continue normally.
+      }
+    });
+  });
 
   document.addEventListener('click', (event) => {
     if (!menu || !toggle || menu.dataset.open !== 'true') return;

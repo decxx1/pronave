@@ -1,0 +1,30 @@
+{
+  "seo": {
+    "title": "Pronave | Contact and Logistics Advice",
+    "metaDescription": "Contact Pronave for expert guidance on international logistics, containers, flexitanks, ground transportation, and specialized technical support.",
+    "imageAlt": "Pronave team in a business meeting"
+  },
+  "hero": {
+    "imageAlt": "Pronave team during an office meeting",
+    "titleLineOne": "Built on trust.",
+    "titleLineTwo": "Driven by expertise.",
+    "contactCta": "CONTACT US"
+  },
+  "locations": {
+    "sectionTitle": "CONTACT",
+    "titles": {
+      "office": "Head office",
+      "terminal1": "Terminal 1",
+      "terminal2": "Terminal 2",
+      "chile": "Chile",
+      "chileSubtitle": "(Documentation)"
+    },
+    "fieldAlts": {
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Business hours",
+      "address": "Address"
+    },
+    "decorativeAlt": "Pronave symbol"
+  }
+}

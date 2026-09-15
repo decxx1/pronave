@@ -1,0 +1,31 @@
+{
+  "seo": {
+    "title": "Pronave | Contacto y asesoramiento logístico",
+    "metaDescription": "Contactá a Pronave para recibir asesoramiento en logística internacional, contenedores, flexitanks, transporte terrestre y soporte técnico especializado.",
+    "imageAlt": "Equipo de Pronave en reunión de trabajo"
+  },
+  "hero": {
+    "imageAlt": "Equipo de Pronave en reunión de trabajo en oficina",
+    "titleLineOne": "Built on trust.",
+    "titleLineTwo": "Driven by expertise.",
+    "contactCta": "CONTACTANOS"
+  },
+  "locations": {
+    "sectionTitle": "CONTACTO",
+    "titles": {
+      "office": "Oficina central",
+      "terminal1": "Terminal 1",
+      "terminal2": "Terminal 2",
+      "chile": "Chile",
+      "chileSubtitle": "(Documentación)"
+    },
+    "fieldAlts": {
+      "phone": "Teléfono",
+      "email": "Correo electrónico",
+      "hours": "Horarios de atención",
+      "address": "Dirección"
+    },
+    "decorativeAlt": "Símbolo de Pronave"
+  }
+}
+

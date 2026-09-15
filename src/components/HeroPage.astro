@@ -1,19 +1,25 @@
 ---
+import { getLocalizedPath } from '@/i18n/config';
+import type { Locale } from '@/i18n/config';
+
 interface Props {
   image: string;
-  imageAlt?: string;
+  locale: Locale;
+  content: {
+    imageAlt: string;
+    titleLineOne: string;
+    titleLineTwo: string;
+    contactCta: string;
+  };
 }
 
-const {
-  image,
-  imageAlt = 'Operación logística de Pronave',
-} = Astro.props;
+const { image, locale, content } = Astro.props;
 ---
 
 <section class="relative isolate flex min-h-svh items-start overflow-hidden bg-hero text-white">
   <img
     src={image}
-    alt={imageAlt}
+    alt={content.imageAlt}
     loading="lazy"
     class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
   />
@@ -26,17 +32,17 @@ const {
         data-aos="fade-up"
         data-aos-duration="800"
       >
-        Built on trust.<br />
-        Driven by expertise.
+        {content.titleLineOne}<br />
+        {content.titleLineTwo}
       </h1>
 
       <a
-        href="/#contacto"
+        href={getLocalizedPath(locale, 'home', '#contacto')}
         class="mt-12 inline-flex min-h-16 items-center border border-white bg-brand-blue/85 px-6 py-3 font-body text-xl font-light italic leading-none transition-colors hover:bg-brand-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:mt-14 sm:min-w-64 sm:justify-center sm:text-2xl"
         data-aos="fade-up"
         data-aos-delay="140"
       >
-        CONTACTANOS
+        {content.contactCta}
       </a>
     </div>
   </div>

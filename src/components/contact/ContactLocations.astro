@@ -3,20 +3,34 @@ import {
   CONTACT_ADDRESS,
   CONTACT_CHILE_ADDRESS,
   CONTACT_CHILE_EMAIL,
-  CONTACT_CHILE_HOURS,
+  CONTACT_CHILE_HOURS_EN,
+  CONTACT_CHILE_HOURS_ES,
   CONTACT_CHILE_PHONE,
   CONTACT_EMAIL,
-  CONTACT_HOURS,
+  CONTACT_HOURS_EN,
+  CONTACT_HOURS_ES,
   CONTACT_PHONE,
   CONTACT_TERMINAL1_ADDRESS,
   CONTACT_TERMINAL1_EMAIL,
-  CONTACT_TERMINAL1_HOURS,
+  CONTACT_TERMINAL1_HOURS_EN,
+  CONTACT_TERMINAL1_HOURS_ES,
   CONTACT_TERMINAL1_PHONE,
   CONTACT_TERMINAL2_ADDRESS,
   CONTACT_TERMINAL2_EMAIL,
-  CONTACT_TERMINAL2_HOURS,
+  CONTACT_TERMINAL2_HOURS_EN,
+  CONTACT_TERMINAL2_HOURS_ES,
   CONTACT_TERMINAL2_PHONE,
 } from 'astro:env/client';
+import type { ContactTranslations } from '@/i18n/translations';
+import type { Locale } from '@/i18n/config';
+
+interface Props {
+  content: ContactTranslations['locations'];
+  locale: Locale;
+}
+
+const { content, locale } = Astro.props;
+const localizedHours = (es?: string, en?: string) => (locale === 'en' ? en : es);
 
 type ContactField = {
   icon: string;
@@ -34,67 +48,67 @@ const buildContactFields = (data: {
   [
     {
       icon: 'icon-celu-contact.svg',
-      alt: 'Teléfono',
+      alt: content.fieldAlts.phone,
       content: data.phone,
       href: data.phone ? `tel:${data.phone.replace(/\D/g, '')}` : undefined,
     },
     {
       icon: 'icon-email-contact.svg',
-      alt: 'Correo electrónico',
+      alt: content.fieldAlts.email,
       content: data.email,
       href: data.email ? `mailto:${data.email}` : undefined,
     },
     {
       icon: 'icon-clock-contact.svg',
-      alt: 'Horarios de atención',
+      alt: content.fieldAlts.hours,
       content: data.hours,
     },
     {
       icon: 'icon-map-contact.svg',
-      alt: 'Dirección',
+      alt: content.fieldAlts.address,
       content: data.address,
     },
   ].filter((item): item is ContactField & { content: string } => Boolean(item.content));
 
 const locations = [
   {
-    title: 'Oficina central',
+    title: content.titles.office,
     tone: 'dark' as const,
     items: buildContactFields({
       phone: CONTACT_PHONE,
       email: CONTACT_EMAIL,
-      hours: CONTACT_HOURS,
+      hours: localizedHours(CONTACT_HOURS_ES, CONTACT_HOURS_EN),
       address: CONTACT_ADDRESS,
     }),
   },
   {
-    title: 'Terminal 1',
+    title: content.titles.terminal1,
     tone: 'light' as const,
     items: buildContactFields({
       phone: CONTACT_TERMINAL1_PHONE,
       email: CONTACT_TERMINAL1_EMAIL,
-      hours: CONTACT_TERMINAL1_HOURS,
+      hours: localizedHours(CONTACT_TERMINAL1_HOURS_ES, CONTACT_TERMINAL1_HOURS_EN),
       address: CONTACT_TERMINAL1_ADDRESS,
     }),
   },
   {
-    title: 'Terminal 2',
+    title: content.titles.terminal2,
     tone: 'dark' as const,
     items: buildContactFields({
       phone: CONTACT_TERMINAL2_PHONE,
       email: CONTACT_TERMINAL2_EMAIL,
-      hours: CONTACT_TERMINAL2_HOURS,
+      hours: localizedHours(CONTACT_TERMINAL2_HOURS_ES, CONTACT_TERMINAL2_HOURS_EN),
       address: CONTACT_TERMINAL2_ADDRESS,
     }),
   },
   {
-    title: 'Chile',
-    subtitle: '(Documentación)',
+    title: content.titles.chile,
+    subtitle: content.titles.chileSubtitle,
     tone: 'light' as const,
     items: buildContactFields({
       phone: CONTACT_CHILE_PHONE,
       email: CONTACT_CHILE_EMAIL,
-      hours: CONTACT_CHILE_HOURS,
+      hours: localizedHours(CONTACT_CHILE_HOURS_ES, CONTACT_CHILE_HOURS_EN),
       address: CONTACT_CHILE_ADDRESS,
     }),
   },
@@ -106,7 +120,7 @@ const locations = [
     <div class="relative flex items-center justify-center" data-aos="fade-up">
       <span aria-hidden="true" class="absolute inset-x-0 border-t-2 border-black"></span>
       <h2 class="relative bg-brand-blue px-8 py-4 font-body text-2xl font-normal tracking-tight text-white sm:px-14 sm:py-5 sm:text-4xl lg:text-5xl">
-        CONTACTO
+        {content.sectionTitle}
       </h2>
     </div>
 
@@ -165,7 +179,7 @@ const locations = [
       >
         <img
           src="/images/shapes/big-symbol-shape-transparent.svg"
-          alt="Símbolo de Pronave"
+          alt={content.decorativeAlt}
           aria-hidden="true"
           loading="lazy"
           class="pointer-events-none absolute top-0 -left-20 h-full w-full object-contain"

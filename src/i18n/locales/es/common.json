@@ -1,0 +1,41 @@
+{
+  "header": {
+    "logoAriaLabel": "Pronave, inicio",
+    "logoAlt": "Pronave Logistics support",
+    "navigationLabel": "Navegación principal",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "menuIconAlt": "Menú",
+    "languageSelectorLabel": "Seleccionar idioma",
+    "languageNames": {
+      "es": "Español",
+      "en": "English"
+    },
+    "navigation": {
+      "home": "INICIO",
+      "services": "SERVICIOS",
+      "about": "NOSOTROS",
+      "contact": "CONTACTO"
+    }
+  },
+  "footer": {
+    "decorativeAlt": "Símbolo de Pronave",
+    "officeTitle": "Oficina central",
+    "contactAlts": {
+      "phone": "Teléfono",
+      "email": "Correo electrónico",
+      "hours": "Horarios de atención",
+      "address": "Dirección"
+    },
+    "socialNavigationLabel": "Redes sociales",
+    "carbonAmount": "0.2g of CO₂",
+    "carbonPerView": "/ view",
+    "carbonBadge": "Website Carbon",
+    "carbonComparison": "Cleaner than 96% of pages tested",
+    "designedBy": "Diseñado por"
+  },
+  "whatsapp": {
+    "ariaLabel": "Consultas por WhatsApp",
+    "label": "Consultas"
+  }
+}

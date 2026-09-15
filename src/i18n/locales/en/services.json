@@ -1,0 +1,108 @@
+{
+  "seo": {
+    "title": "Pronave | Specialized Logistics Services",
+    "metaDescription": "Services for dry and reefer containers, ISO tanks, and flexitanks, plus terminal operations, on-site support, and domestic and international transportation backed by technical expertise.",
+    "imageAlt": "Port crane moving a container at a logistics terminal"
+  },
+  "hero": {
+    "imageAlt": "Port crane moving a container at a logistics terminal",
+    "titleLineOne": "Built on trust.",
+    "titleLineTwo": "Driven by expertise.",
+    "contactCta": "CONTACT US"
+  },
+  "solutions": {
+    "title": "SERVICES",
+    "subtitle": "SOLUTIONS",
+    "items": [
+      {
+        "id": "terminal",
+        "title": "Marine Container Terminal",
+        "imageAlt": "Rows of stacked containers at a terminal, with ONE units in the foreground",
+        "highlight": "We provide specialized infrastructure and equipment for the safe and efficient handling of containers during loading, unloading, and storage operations.",
+        "paragraphs": [
+          "Our equipment includes Top Lifters and Reach Stackers, along with dedicated container-cleaning areas equipped with high-pressure hot-water washers and approved, environmentally responsible detergents, ensuring the efficient cleaning of each unit's interior.",
+          "Our facilities feature 24-hour security, access control, and closed-circuit television (CCTV), ensuring the continuous protection of equipment and cargo."
+        ]
+      },
+      {
+        "id": "dry",
+        "title": "Dry Containers",
+        "imageAlt": "ONE dry container with its doors open at a logistics yard",
+        "items": [
+          "Services designed to ensure the availability and proper operating condition of dry containers.",
+          "Handling and storage.",
+          "Repair and maintenance.",
+          "Washing and cleaning.",
+          "Container upgrading.",
+          "Cargo consolidation and deconsolidation."
+        ]
+      },
+      {
+        "id": "reefer",
+        "title": "Reefer Containers",
+        "imageAlt": "Technician performing maintenance on a Star Cool reefer container",
+        "highlight": "Specialized technical support to maintain the cold chain and ensure the proper operation of refrigerated containers.",
+        "items": [
+          "Handling and storage.",
+          "Repair and maintenance.",
+          "Washing and cleaning.",
+          "Container upgrading.",
+          "PTI (Pre-Trip Inspection).",
+          "Leak Test.",
+          "Gas injection for controlled atmosphere (CA).",
+          "Authorized service center for Star Cool, Carrier, and Daikin equipment."
+        ]
+      },
+      {
+        "id": "iso-tank",
+        "title": "ISO Tank Containers",
+        "imageAlt": "Reach stacker lifting a Stolt ISO tank container at a logistics yard",
+        "highlight": "Technical services for comprehensive tank container care, meeting the standards required for each operation.",
+        "items": [
+          "Handling and storage.",
+          "Food-grade washing.",
+          "Repair and maintenance.",
+          "Leak Test."
+        ]
+      },
+      {
+        "id": "flexitanks",
+        "title": "Flexitanks",
+        "imageAlt": "Flexitank installed inside a container with a bulkhead and loading hose",
+        "highlight": "Solutions for bulk liquid loading operations, with technical supervision and support throughout the entire process:",
+        "items": [
+          "Flexitank storage and installation.",
+          "Loading supervision and support.",
+          "Supply of flow meters and valves."
+        ]
+      },
+      {
+        "id": "in-situ",
+        "title": "On-Site Services",
+        "imageAlt": "Temperature monitoring of palletized fruit with a Hanna Checktemp digital thermometer",
+        "highlight": "Specialized technical assistance delivered directly where the operation requires it, ensuring rapid response and operational continuity.",
+        "items": [
+          "Cold Treatment (calibration of cold-treatment sensors).",
+          "Flexitank loading supervision.",
+          "ISO tank container loading supervision.",
+          "Installation of controlled-atmosphere (CA) curtains.",
+          "Reefer container repairs with 24/7 emergency service.",
+          "Dedicated fleet for transporting technical personnel."
+        ]
+      },
+      {
+        "id": "transporte",
+        "title": "Ground Transportation",
+        "imageAlt": "Refrigerated truck traveling through a snow-covered mountain landscape",
+        "highlight": "Transportation services tailored to the specific requirements of each logistics operation.",
+        "items": [
+          "Domestic transportation.",
+          "International transportation.",
+          "Active temperature-controlled transportation.",
+          "Transportation of IMO-classified cargo.",
+          "Transportation of oversized loads."
+        ]
+      }
+    ]
+  }
+}

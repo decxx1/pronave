@@ -1,0 +1,82 @@
+{
+  "seo": {
+    "title": "Pronave | Soluciones logísticas internacionales",
+    "metaDescription": "Soluciones técnicas y logísticas para comercio exterior: contenedores, flexitanks, transporte y soporte especializado para operaciones confiables y ágiles.",
+    "imageAlt": "Terminal portuaria con contenedores"
+  },
+  "hero": {
+    "imageAlt": "Vista aérea de una terminal portuaria con contenedores",
+    "decorativeAlt": "Símbolo de Pronave",
+    "titleLineOne": "Built on trust.",
+    "titleLineTwo": "Driven by expertise.",
+    "description": "Nuestro propósito es brindar respaldo técnico, profesionalismo y soluciones de logística internacional a clientes que necesitan un socio confiable detrás de cada operación.",
+    "contactCta": "CONTACTANOS"
+  },
+  "services": {
+    "title": "SERVICIOS",
+    "subtitle": "SOLUCIONES",
+    "previousLabel": "Servicios anteriores",
+    "nextLabel": "Siguientes servicios",
+    "items": [
+      { "id": "flexitanks", "name": "Flexitanks" },
+      { "id": "iso-tank", "name": "ISO Tank\nContainers" },
+      { "id": "dry", "name": "Contenedores\nDry" },
+      { "id": "reefer", "name": "Contenedores\nReefer" },
+      { "id": "in-situ", "name": "Servicios\nIn Situ" },
+      { "id": "terminal", "name": "Terminal de\nconectores marítimos" },
+      { "id": "transporte", "name": "Transporte\nTerrestre" }
+    ]
+  },
+  "about": {
+    "title": "NOSOTROS",
+    "imageAlt": "Equipo de Pronave en su oficina"
+  },
+  "partners": {
+    "title": "QUIENES CONFÍAN EN NOSOTROS",
+    "previousLabel": "Partners anteriores",
+    "nextLabel": "Siguientes partners",
+    "items": [
+      "AMC",
+      "Grupo Peñaflor",
+      "Hoyer",
+      "Evergreen",
+      "Maersk Line",
+      "ONE Ocean Network Express",
+      "Medlog",
+      "Perfopro",
+      "Robinson",
+      "Solt Nielsen",
+      "STM",
+      "Total Trade Group"
+    ]
+  },
+  "numbers": {
+    "sectionLabel": "Nuestros números",
+    "imageAlt": "Operación de carga de contenedores en una terminal logística",
+    "metrics": [
+      { "value": "1015", "label": "Cold treatments\ncumplidos" },
+      { "value": "7803", "label": "Flexitanks cargados\nsin incidencias" },
+      { "value": "1460", "label": "Días sin accidentes" }
+    ]
+  },
+  "contactForm": {
+    "decorativeAlt": "Símbolo de Pronave",
+    "titleLineOne": "Envíanos",
+    "titleLineTwo": "tu consulta",
+    "form": {
+      "title": "Formulario de contacto",
+      "fields": {
+        "name": "Nombre y Apellido",
+        "phone": "Teléfono",
+        "email": "E-mail",
+        "message": "Mensaje"
+      },
+      "submit": "Enviar",
+      "submitting": "Enviando...",
+      "configurationError": "El formulario no está configurado correctamente.",
+      "successMessage": "¡Mensaje enviado correctamente! Te responderemos pronto.",
+      "genericError": "Ocurrió un error al enviar el mensaje. Por favor, intenta nuevamente.",
+      "emailSubject": "Contacto desde la web - de: {{name}}"
+    }
+  }
+}

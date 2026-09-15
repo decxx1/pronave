@@ -1,13 +1,27 @@
 ---
-const services = [
-  { id: 'flexitanks', name: 'Flexitanks', icon: 'container-flex-tank-icon.svg' },
-  { id: 'iso-tank', name: 'ISO Tank\nContainers', icon: 'container-tank-icon.svg' },
-  { id: 'dry', name: 'Contenedores\nDry', icon: 'container-dry-icon.svg' },
-  { id: 'reefer', name: 'Contenedores\nReefer', icon: 'container-icon.svg' },
-  { id: 'in-situ', name: 'Servicios\nIn Situ', icon: 'medal-icon.svg' },
-  { id: 'terminal', name: 'Terminal de\nconectores marítimos', icon: 'ship-icon.svg' },
-  { id: 'transporte', name: 'Transporte\nTerrestre', icon: 'transport-icon.svg' },
-];
+import { getLocalizedPath } from '@/i18n/config';
+import type { Locale } from '@/i18n/config';
+import type { HomeTranslations } from '@/i18n/translations';
+
+interface Props {
+  content: HomeTranslations['services'];
+  locale: Locale;
+}
+
+const { content, locale } = Astro.props;
+const serviceIcons = {
+  flexitanks: 'container-flex-tank-icon.svg',
+  'iso-tank': 'container-tank-icon.svg',
+  dry: 'container-dry-icon.svg',
+  reefer: 'container-icon.svg',
+  'in-situ': 'medal-icon.svg',
+  terminal: 'ship-icon.svg',
+  transporte: 'transport-icon.svg',
+};
+const services = content.items.map((service) => ({
+  ...service,
+  icon: serviceIcons[service.id as keyof typeof serviceIcons],
+}));
 ---
 
 <section id="servicios" class="bg-white py-14 text-black sm:py-20 lg:py-24">
@@ -15,7 +29,7 @@ const services = [
     <div class="relative flex items-center justify-center" data-aos="fade-up">
       <span aria-hidden="true" class="absolute inset-x-0 border-t-2 border-black"></span>
       <h2 class="relative bg-brand-blue px-2 py-4 font-body text-2xl font-normal tracking-tight text-white sm:px-14 sm:py-5 sm:text-4xl lg:text-5xl">
-        SERVICIOS <span class="mx-2 sm:mx-4">|</span> SOLUCIONES
+        {content.title} <span class="mx-2 sm:mx-4">|</span> {content.subtitle}
       </h2>
     </div>
 
@@ -23,7 +37,7 @@ const services = [
       <button
         type="button"
         data-services-prev
-        aria-label="Servicios anteriores"
+        aria-label={content.previousLabel}
         class="absolute left-0 top-1/2 z-10 -translate-x-full -translate-y-1/2 px-1 py-3 text-2xl leading-none transition-opacity hover:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:pointer-events-none disabled:opacity-25 sm:text-3xl"
       >
         <span aria-hidden="true">◀</span>
@@ -34,7 +48,7 @@ const services = [
           {services.map((service) => (
             <div class="w-full shrink-0 px-2 xs:w-1/2 md:w-1/3 lg:w-1/4">
               <a
-                href={`/services#${service.id}`}
+                href={getLocalizedPath(locale, 'services', `#${service.id}`)}
                 class="group flex h-52 flex-col items-center justify-center border-2 border-black px-3 text-center transition-colors duration-300 hover:border-brand-blue hover:bg-brand-blue hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue sm:h-56"
               >
                 <img
@@ -56,7 +70,7 @@ const services = [
       <button
         type="button"
         data-services-next
-        aria-label="Siguientes servicios"
+        aria-label={content.nextLabel}
         class="absolute right-0 top-1/2 z-10 translate-x-full -translate-y-1/2 px-1 py-3 text-2xl leading-none transition-opacity hover:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:pointer-events-none disabled:opacity-25 sm:text-3xl"
       >
         <span aria-hidden="true">▶</span>

@@ -1,0 +1,50 @@
+{
+  "seo": {
+    "title": "Pronave | International Logistics Experts",
+    "metaDescription": "Meet Pronave, the technical partner for international trade operations, delivering expertise, traceability, adaptability, and professional support.",
+    "imageAlt": "Pronave team at the office"
+  },
+  "hero": {
+    "imageAlt": "Pronave team at the office",
+    "titleLineOne": "Built on trust.",
+    "titleLineTwo": "Driven by expertise.",
+    "contactCta": "CONTACT US"
+  },
+  "valueProposition": {
+    "sectionTitle": "ABOUT US",
+    "title": "Value proposition",
+    "paragraphs": [
+      "At Pronave, we provide specialized logistics and technical support for international trade operations that demand precision, traceability, and constant adaptability. We support freight forwarders, shipping lines, and companies through an operating model based on applied knowledge, hands-on experience, and a consistent presence throughout the critical challenges each operation presents.",
+      "We provide the technical support our clients need to conduct business with continuity, safety, and confidence. We are a reliable, ethical, and professional partner, capable of supporting complex operations and real-world contingencies with sound technical judgment and commitment."
+    ],
+    "imageAlt": "Pronave personnel wearing safety vests at a container terminal"
+  },
+  "mission": {
+    "title": "Mission",
+    "decorativeAlt": "Decorative arrow shape",
+    "paragraphs": [
+      "We carry out international trade projects that require skilled, expert technical support. We ensure end-to-end traceability, resolve contingencies, and provide solutions at every stage of the operation.",
+      "Our mission is to enable our clients' commercial growth."
+    ]
+  },
+  "vision": {
+    "title": "Vision",
+    "decorativeAlt": "Decorative arrow shape",
+    "imageAlt": "Pronave professional wearing a hard hat and safety vest in front of containers",
+    "paragraph": "To establish ourselves as a trusted international logistics services partner that delivers professional answers and solutions whenever operations demand them, ensuring the efficient execution of every project. Our aim is to build long-term relationships with our clients."
+  },
+  "values": {
+    "title": "Values",
+    "items": [
+      "Technical expertise.",
+      "Adaptability.",
+      "Operational responsibility.",
+      "Forward thinking.",
+      "Reliability.",
+      "Commitment.",
+      "Teamwork.",
+      "Ongoing support.",
+      "Professional ethics."
+    ]
+  }
+}

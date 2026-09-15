@@ -1,0 +1,51 @@
+{
+  "seo": {
+    "title": "Pronave | Expertos en logística internacional",
+    "metaDescription": "Conocé a Pronave, el aliado técnico para operaciones de comercio exterior que aporta experiencia, trazabilidad, adaptación y acompañamiento profesional.",
+    "imageAlt": "Equipo de Pronave en su oficina"
+  },
+  "hero": {
+    "imageAlt": "Equipo de Pronave en su oficina",
+    "titleLineOne": "Built on trust.",
+    "titleLineTwo": "Driven by expertise.",
+    "contactCta": "CONTACTANOS"
+  },
+  "valueProposition": {
+    "sectionTitle": "NOSOTROS",
+    "title": "Propuesta de valor",
+    "paragraphs": [
+      "En Pronave ofrecemos soporte logístico y técnico especializado para operaciones de comercio exterior que requieren precisión, trazabilidad y adaptabilidad constante. Acompañamos a freight forwarders, líneas marítimas y empresas con un modelo de trabajo basado en el conocimiento aplicado, experiencia práctica y presencia constante en los desafíos críticos que exige la operación.",
+      "Brindamos respaldo técnico para que nuestros clientes puedan desarrollar su negocio con continuidad, seguridad y confianza. Somos un socio estable, ético y profesional, capaz de sostener operaciones complejas y contingencias reales con criterio técnico y compromiso."
+    ],
+    "imageAlt": "Personal de Pronave con chalecos de seguridad en terminal de contenedores"
+  },
+  "mission": {
+    "title": "Misión",
+    "decorativeAlt": "Forma decorativa de flecha",
+    "paragraphs": [
+      "Llevamos a cabo proyectos de comercio exterior que requieren soporte técnico capacitado y experto. Aseguramos trazabilidad de principio a fin. Resolvemos contingencias y damos soluciones en cada etapa de la operación.",
+      "Nuestra misión es asegurar el desarrollo comercial de nuestros clientes."
+    ]
+  },
+  "vision": {
+    "title": "Visión",
+    "decorativeAlt": "Forma decorativa de flecha",
+    "imageAlt": "Profesional de Pronave con casco y chaleco de seguridad frente a contenedores",
+    "paragraph": "Consolidarnos como un aliado de servicios logísticos internacionales que brinda respuestas y soluciones profesionales cada vez que la operación lo exige, asegurando el desarrollo eficiente de sus proyectos. Nuestro fin es generar relaciones de largo plazo con nuestros clientes."
+  },
+  "values": {
+    "title": "Valores",
+    "items": [
+      "Especialización técnica.",
+      "Adaptación.",
+      "Responsabilidad operativa.",
+      "Visión a futuro.",
+      "Confiabilidad.",
+      "Compromiso.",
+      "Trabajo en equipo.",
+      "Acompañamiento continuo.",
+      "Ética profesional."
+    ]
+  }
+}
+

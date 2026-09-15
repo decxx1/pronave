@@ -1,128 +1,52 @@
 ---
-type Solution = {
-  id: string;
-  title: string;
-  icon: string;
-  image: string;
-  imageAlt: string;
-  imageSide: 'left' | 'right';
-  highlight?: string;
-  items?: string[];
-  paragraphs?: string[];
-};
+import type { ServicesTranslations } from '@/i18n/translations';
 
-const solutions: Solution[] = [
-  {
-    id: 'terminal',
-    title: 'Terminal de contenedores marítimos',
+interface Props {
+  content: ServicesTranslations['solutions'];
+}
+
+const { content } = Astro.props;
+const solutionAssets = {
+  terminal: {
     icon: 'ship-icon.svg',
     image: '/images/servicios/1.webp',
-    imageAlt: 'Fila de contenedores apilados en terminal, con unidades ONE en primer plano',
-    imageSide: 'right',
-    highlight: 'Brindamos infraestructura y equipamiento especializado para la manipulación segura y eficiente de contenedores durante las operaciones de carga, descarga y almacenamiento.',
-    paragraphs: [
-      'Contamos con grúas Top Lifter y Reach Stacker, además de áreas especialmente preparadas para la limpieza de contenedores mediante hidrolavadoras de agua caliente a alta presión y detergentes aprobados y ambientalmente responsables, garantizando una limpieza eficiente del interior de cada unidad.',
-      'Nuestras instalaciones disponen de vigilancia 24 horas, control de accesos y sistema de videovigilancia (CCTV), asegurando la protección permanente de los equipos y las cargas.',
-    ],
+    imageSide: 'right' as const,
   },
-  {
-    id: 'dry',
-    title: 'Contenedores Dry',
+  dry: {
     icon: 'container-dry-icon.svg',
     image: '/images/servicios/2.webp',
-    imageAlt: 'Contenedor dry ONE con las puertas abiertas en predio logístico',
-    imageSide: 'left',
-    items: [
-      'Servicios orientados a garantizar la disponibilidad y el correcto estado operativo de contenedores dry.',
-      'Manipuleo y almacenamiento.',
-      'Reparación y mantenimiento.',
-      'Lavado y limpieza.',
-      'Mejoramiento de grado.',
-      'Consolidación y desconsolidación de carga.',
-    ],
+    imageSide: 'left' as const,
   },
-  {
-    id: 'reefer',
-    title: 'Contenedores Reefer',
+  reefer: {
     icon: 'container-icon.svg',
     image: '/images/servicios/3.webp',
-    imageAlt: 'Técnico realizando mantenimiento en un contenedor reefer Star Cool',
-    imageSide: 'right',
-    highlight: 'Soporte técnico especializado para mantener la cadena de frío y asegurar el correcto funcionamiento de contenedores refrigerados.',
-    items: [
-      'Manipuleo y almacenamiento.',
-      'Reparación y mantenimiento.',
-      'Lavado y limpieza.',
-      'Mejoramiento de grado.',
-      'PTI (Pre-Trip Inspection).',
-      'Leak Test.',
-      'Gasificación para atmósfera controlada (AC).',
-      'Centro de servicio autorizado para equipos Star Cool, Carrier y Daikin.',
-    ],
+    imageSide: 'right' as const,
   },
-  {
-    id: 'iso-tank',
-    title: 'ISO Tank Containers',
+  'iso-tank': {
     icon: 'container-tank-icon.svg',
     image: '/images/servicios/4.webp',
-    imageAlt: 'Reach stacker izando un ISO tank container Stolt en patio logístico',
-    imageSide: 'left',
-    highlight: 'Servicios técnicos para la atención integral de tank containers, cumpliendo con los estándares requeridos para cada operación.',
-    items: [
-      'Manipuleo y almacenamiento.',
-      'Lavado grado alimenticio.',
-      'Reparación y mantenimiento.',
-      'Leak Test.',
-    ],
+    imageSide: 'left' as const,
   },
-  {
-    id: 'flexitanks',
-    title: 'Flexitanks',
+  flexitanks: {
     icon: 'container-flex-tank-icon.svg',
     image: '/images/servicios/5.webp',
-    imageAlt: 'Flexitank instalado en el interior de un contenedor con bulkhead y manguera de carga',
-    imageSide: 'right',
-    highlight: 'Soluciones para operaciones de carga líquida a granel, con supervisión técnica y acompañamiento durante todo el proceso:',
-    items: [
-      'Almacenamiento y montaje de flexitanks.',
-      'Supervisión y atención de carga.',
-      'Provisión de caudalímetros y válvulas.',
-    ],
+    imageSide: 'right' as const,
   },
-  {
-    id: 'in-situ',
-    title: 'Servicios In Situ',
+  'in-situ': {
     icon: 'medal-icon.svg',
     image: '/images/servicios/6.webp',
-    imageAlt: 'Control de temperatura en fruta paletizada con termómetro digital Hanna Checktemp',
-    imageSide: 'left',
-    highlight: 'Asistencia técnica especializada directamente en el lugar donde la operación lo requiere, brindando respuesta rápida y continuidad operativa.',
-    items: [
-      'Cold Treatment (calibración de sensores para tratamientos de frío).',
-      'Supervisión de carga de flexitanks.',
-      'Supervisión de carga de ISO Tank Containers.',
-      'Instalación de cortinas para atmósfera controlada (AC).',
-      'Reparación de contenedores reefer con servicio de emergencia 24/7.',
-      'Flota propia para el traslado de personal técnico.',
-    ],
+    imageSide: 'left' as const,
   },
-  {
-    id: 'transporte',
-    title: 'Transporte Terrestre',
+  transporte: {
     icon: 'transport-icon.svg',
     image: '/images/servicios/7.webp',
-    imageAlt: 'Camión refrigerado circulando por un paisaje de montaña nevada',
-    imageSide: 'right',
-    highlight: 'Servicio de transporte adaptado a los requerimientos específicos de cada operación logística.',
-    items: [
-      'Transporte nacional.',
-      'Transporte internacional.',
-      'Transporte con frío activo.',
-      'Transporte de mercancías IMO.',
-      'Transporte de cargas sobredimensionadas.',
-    ],
+    imageSide: 'right' as const,
   },
-];
+};
+const solutions = content.items.map((solution) => ({
+  ...solution,
+  ...solutionAssets[solution.id as keyof typeof solutionAssets],
+}));
 ---
 
 <section id="soluciones" class="overflow-hidden bg-white py-14 text-ink sm:py-20 lg:py-24">
@@ -130,7 +54,7 @@ const solutions: Solution[] = [
     <div class="relative flex items-center justify-center" data-aos="fade-up">
       <span aria-hidden="true" class="absolute inset-x-0 border-t-2 border-black"></span>
       <h2 class="relative bg-brand-blue px-8 py-4 font-body text-2xl font-normal tracking-tight text-white sm:px-14 sm:py-5 sm:text-4xl lg:text-5xl">
-        SERVICIOS <span class="mx-2 sm:mx-4">|</span> SOLUCIONES
+        {content.title} <span class="mx-2 sm:mx-4">|</span> {content.subtitle}
       </h2>
     </div>
   </div>
