@@ -1,11 +1,11 @@
 {
   "seo": {
-    "title": "Pronave | Contact and Logistics Advice",
-    "metaDescription": "Contact Pronave for expert guidance on international logistics, containers, flexitanks, ground transportation, and specialized technical support.",
-    "imageAlt": "Pronave team in a business meeting"
+    "title": "Pronave | Contact and Logistics Consultancy",
+    "metaDescription": "Contact Pronave to receive guidance on international logistics, containers, flexitanks, ground transportation, and specialized technical support.",
+    "imageAlt": "Pronave staff in a business meeting"
   },
   "hero": {
-    "imageAlt": "Pronave team during an office meeting",
+    "imageAlt": "Pronave staff during an office meeting",
     "titleLineOne": "Built on trust.",
     "titleLineTwo": "Driven by expertise.",
     "contactCta": "CONTACT US"
@@ -22,7 +22,7 @@
     "fieldAlts": {
       "phone": "Phone",
       "email": "Email",
-      "hours": "Business hours",
+      "hours": "Office hours",
       "address": "Address"
     },
     "decorativeAlt": "Pronave symbol"

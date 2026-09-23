@@ -1,50 +1,51 @@
 {
   "seo": {
-    "title": "Pronave | International Logistics Experts",
-    "metaDescription": "Meet Pronave, the technical partner for international trade operations, delivering expertise, traceability, adaptability, and professional support.",
-    "imageAlt": "Pronave team at the office"
+    "title": "Pronave | Highly Qualified in International Logistics",
+    "metaDescription": "Experience Pronave, your technical allied to carry out internation trade tasks contributing experience, traceability, adaptation and professional guidance.",
+    "imageAlt": "Pronave team in their office"
   },
   "hero": {
-    "imageAlt": "Pronave team at the office",
+    "imageAlt": "Pronave team in their office",
     "titleLineOne": "Built on trust.",
     "titleLineTwo": "Driven by expertise.",
     "contactCta": "CONTACT US"
   },
   "valueProposition": {
     "sectionTitle": "ABOUT US",
-    "title": "Value proposition",
+    "title": "Value offer",
     "paragraphs": [
-      "At Pronave, we provide specialized logistics and technical support for international trade operations that demand precision, traceability, and constant adaptability. We support freight forwarders, shipping lines, and companies through an operating model based on applied knowledge, hands-on experience, and a consistent presence throughout the critical challenges each operation presents.",
-      "We provide the technical support our clients need to conduct business with continuity, safety, and confidence. We are a reliable, ethical, and professional partner, capable of supporting complex operations and real-world contingencies with sound technical judgment and commitment."
+      "Pronave offers specialized technical and logistic assistance related to international trade tasks that require constant precision, traceability and adaptability. Pronave supports freight forwarders, maritime paths and companies with a working ethic based on applied knowledge, know-how and constant presence in the different challenges arising from the tasks.",
+      "Pronave offers technical background for our clients to help them develop their businesses with continuity, safety and confidence. A steady, ethical and professional partner capable of handling complex tasks and real contingencies with technical criteria and commitment."
     ],
-    "imageAlt": "Pronave personnel wearing safety vests at a container terminal"
+    "imageAlt": "Pronave staff wearing safety vests at a container terminal"
   },
   "mission": {
-    "title": "Mission",
+    "title": "Goal",
     "decorativeAlt": "Decorative arrow shape",
     "paragraphs": [
-      "We carry out international trade projects that require skilled, expert technical support. We ensure end-to-end traceability, resolve contingencies, and provide solutions at every stage of the operation.",
-      "Our mission is to enable our clients' commercial growth."
+      " Provane carries out internation trade projects that require expert and qualified technical support. It assures traceability from beginning to end. It solves contingencies y provides solutions in each stage of the task.",
+      "Our goal is to enable the business development of our clients."
     ]
   },
   "vision": {
     "title": "Vision",
     "decorativeAlt": "Decorative arrow shape",
-    "imageAlt": "Pronave professional wearing a hard hat and safety vest in front of containers",
-    "paragraph": "To establish ourselves as a trusted international logistics services partner that delivers professional answers and solutions whenever operations demand them, ensuring the efficient execution of every project. Our aim is to build long-term relationships with our clients."
+    "imageAlt": "Pronave staff wearing a helmet and safety vest in front of containers",
+    "paragraph": " Our goal is to become an international logistics allied providing answers and professional solutions whenever the task requires it, ensuring the efficient development of your projects. Our goal is to create long term bonds with our clients. "
   },
   "values": {
     "title": "Values",
     "items": [
-      "Technical expertise.",
+      "Technique Specialization.",
       "Adaptability.",
       "Operational responsibility.",
-      "Forward thinking.",
+      "Forward-looking approach.",
       "Reliability.",
       "Commitment.",
       "Teamwork.",
-      "Ongoing support.",
-      "Professional ethics."
+      "Constant assitance.",
+      "Professional ethic."
     ]
   }
 }
+

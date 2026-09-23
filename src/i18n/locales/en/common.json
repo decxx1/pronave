@@ -2,7 +2,7 @@
   "header": {
     "logoAriaLabel": "Pronave, home",
     "logoAlt": "Pronave Logistics Support",
-    "navigationLabel": "Main navigation",
+    "navigationLabel": "Main surfing",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "menuIconAlt": "Menu",
@@ -24,7 +24,7 @@
     "contactAlts": {
       "phone": "Phone",
       "email": "Email",
-      "hours": "Business hours",
+      "hours": "Office hours",
       "address": "Address"
     },
     "socialNavigationLabel": "Social media",
@@ -36,6 +36,6 @@
   },
   "whatsapp": {
     "ariaLabel": "Contact us on WhatsApp",
-    "label": "Inquiries"
+    "label": "Enquiries"
   }
 }

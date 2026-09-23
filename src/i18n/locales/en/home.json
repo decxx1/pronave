@@ -1,15 +1,15 @@
 {
   "seo": {
     "title": "Pronave | International Logistics Solutions",
-    "metaDescription": "Technical and logistics solutions for international trade: containers, flexitanks, transportation, and specialized support for reliable, efficient operations.",
-    "imageAlt": "Port terminal with containers"
+    "metaDescription": "International trade technical and logistic solutions: containers, flexitanks, transport and specialized support for reliable and flexible operations.",
+    "imageAlt": "Barge port with containers"
   },
   "hero": {
-    "imageAlt": "Aerial view of a port terminal with containers",
+    "imageAlt": "Aerial view of a barge port with containers",
     "decorativeAlt": "Pronave symbol",
     "titleLineOne": "Built on trust.",
     "titleLineTwo": "Driven by expertise.",
-    "description": "Our purpose is to provide technical support, professional expertise, and international logistics solutions to clients who need a trusted partner behind every operation.",
+    "description": "Our purpose is to provide technical support, professionalism and international logistics solutions to clients who need a trustworthy partner behind every operation.",
     "contactCta": "CONTACT US"
   },
   "services": {
@@ -23,13 +23,13 @@
       { "id": "dry", "name": "Dry\nContainers" },
       { "id": "reefer", "name": "Reefer\nContainers" },
       { "id": "in-situ", "name": "On-Site\nServices" },
-      { "id": "terminal", "name": "Marine Container\nTerminal" },
+      { "id": "terminal", "name": "Maritime Container\nTerminal" },
       { "id": "transporte", "name": "Ground\nTransportation" }
     ]
   },
   "about": {
     "title": "ABOUT US",
-    "imageAlt": "Pronave team at the office"
+    "imageAlt": "Pronave staff at the office"
   },
   "partners": {
     "title": "TRUSTED BY",
@@ -52,17 +52,17 @@
   },
   "numbers": {
     "sectionLabel": "Our numbers",
-    "imageAlt": "Container loading operation at a logistics terminal",
+    "imageAlt": "Container cargo operation at a logistics terminal",
     "metrics": [
-      { "value": "1015", "label": "Cold treatments\ncompleted" },
-      { "value": "7803", "label": "Flexitanks loaded\nwithout incidents" },
-      { "value": "1460", "label": "Accident-free days" }
+      { "value": "1015", "label": "Cold treatments\naccomplish" },
+      { "value": "7803", "label": "Loaded Flexitanks\nwith no incidents" },
+      { "value": "1460", "label": "Days without accidents" }
     ]
   },
   "contactForm": {
     "decorativeAlt": "Pronave symbol",
     "titleLineOne": "Send us",
-    "titleLineTwo": "your inquiry",
+    "titleLineTwo": "your enquiry",
     "form": {
       "title": "Contact form",
       "fields": {
@@ -74,9 +74,10 @@
       "submit": "Send",
       "submitting": "Sending...",
       "configurationError": "The form is not configured correctly.",
-      "successMessage": "Your message was sent successfully! We will get back to you soon.",
-      "genericError": "An error occurred while sending your message. Please try again.",
-      "emailSubject": "Website inquiry from: {{name}}"
+      "successMessage": "Your message has been successfully sent! We will contact you soon.",
+      "genericError": "An error has occurred while sending your message. Please try again.",
+      "emailSubject": "Website enquiry from: {{name}}"
     }
   }
 }
+
