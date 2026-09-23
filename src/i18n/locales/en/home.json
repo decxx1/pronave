@@ -62,7 +62,7 @@
   "contactForm": {
     "decorativeAlt": "Pronave symbol",
     "titleLineOne": "Send us",
-    "titleLineTwo": "your enquiry",
+    "titleLineTwo": "your inquiry",
     "form": {
       "title": "Contact form",
       "fields": {
@@ -76,7 +76,7 @@
       "configurationError": "The form is not configured correctly.",
       "successMessage": "Your message has been successfully sent! We will contact you soon.",
       "genericError": "An error has occurred while sending your message. Please try again.",
-      "emailSubject": "Website enquiry from: {{name}}"
+      "emailSubject": "Website inquiry from: {{name}}"
     }
   }
 }
